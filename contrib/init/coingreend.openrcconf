@@ -1,0 +1,33 @@
+# /etc/conf.d/coingreend: config file for /etc/init.d/coingreend
+
+# Config file location
+#COINGREEND_CONFIGFILE="/etc/coingreen/coingreen.conf"
+
+# What directory to write pidfile to?  (created and owned by $COINGREEND_USER)
+#COINGREEND_PIDDIR="/var/run/coingreend"
+
+# What filename to give the pidfile
+#COINGREEND_PIDFILE="${COINGREEND_PIDDIR}/coingreend.pid"
+
+# Where to write coingreend data (be mindful that the blockchain is large)
+#COINGREEND_DATADIR="/var/lib/coingreend"
+
+# User and group to own coingreend process
+#COINGREEND_USER="coingreen"
+#COINGREEND_GROUP="coingreen"
+
+# Path to coingreend executable
+#COINGREEND_BIN="/usr/bin/coingreend"
+
+# Nice value to run coingreend under
+#COINGREEND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+COINGREEND_OPTS="-disablewallet"
+
+# The timeout in seconds OpenRC will wait for coingreend to terminate
+# after a SIGTERM has been raised.
+# Note that this will be mapped as argument to start-stop-daemon's
+# '--retry' option, which means you can specify a retry schedule
+# here. For more information see man 8 start-stop-daemon.
+COINGREEND_SIGTERM_TIMEOUT=60

@@ -1,15 +1,16 @@
 // Copyright (c) 2015 The Dogecoin Core developers
+// Copyright (c) 2021 CoinGreen Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "arith_uint256.h"
 #include "chainparams.h"
-#include "dogecoin.h"
+#include "coingreen.h"
 #include "test/test_bitcoin.h"
 
 #include <boost/test/unit_test.hpp>
 
-BOOST_FIXTURE_TEST_SUITE(dogecoin_tests, TestingSetup)
+BOOST_FIXTURE_TEST_SUITE(coingreen_tests, TestingSetup)
 
 /**
  * the maximum block reward at a given height for a block without fees
