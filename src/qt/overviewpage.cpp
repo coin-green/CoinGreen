@@ -1,10 +1,12 @@
 // Copyright (c) 2011-2016 The Bitcoin Core developers
+// Copyright (c) 2021      CoinGreen Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "overviewpage.h"
 #include "ui_overviewpage.h"
 
+#include "clientversion.h"
 #include "bitcoinunits.h"
 #include "clientmodel.h"
 #include "guiconstants.h"
@@ -141,6 +143,10 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     showOutOfSyncWarning(true);
     connect(ui->labelWalletStatus, SIGNAL(clicked()), this, SLOT(handleOutOfSyncWarningClicks()));
     connect(ui->labelTransactionsStatus, SIGNAL(clicked()), this, SLOT(handleOutOfSyncWarningClicks()));
+
+    std::string CGVersion("CoinGreen client v");
+    CGVersion += CLIENT_BUILD_NO_SUFFIX;
+    ui->labelCGVersion->setText(CGVersion.c_str());
 }
 
 void OverviewPage::handleTransactionClicked(const QModelIndex &index)

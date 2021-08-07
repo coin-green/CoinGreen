@@ -150,15 +150,16 @@ public:
         nDefaultPort = 22556;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1627165281, 774980, 0x1e0ffff0, 1, 88 * COIN);
-                                     
+// CoinGreen v1:   genesis = CreateGenesisBlock(1627165281, 774980, 0x1e0ffff0, 1, 88 * COIN);
+        genesis = CreateGenesisBlock(1631123996, 1116213, 0x1e0ffff0, 1, 88 * COIN);
+
         consensus.hashGenesisBlock = genesis.GetHash();
         digishieldConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
         auxpowConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
 
         assert(genesis.hashMerkleRoot == uint256S("0x8d92c90adacac4d30083b56726716392cb433c2ec61fb5b3920705a0673ddf22"));
-        assert(consensus.hashGenesisBlock == uint256S("0xdda48247df4e38ae666048683301c7e0b3dd938018980cf1731a53dee7f81315"));
-
+// CoinGreen v1:    assert(consensus.hashGenesisBlock == uint256S("0xdda48247df4e38ae666048683301c7e0b3dd938018980cf1731a53dee7f81315"));
+        assert(consensus.hashGenesisBlock == uint256S("0x89a4b9b3f05df207c0a731d785e37feea6bfad4e7f6ef8b22910d86b3de229b7"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
 //        vSeeds.push_back(CDNSSeedData("multidoge.org", "seed.multidoge.org", true));
@@ -181,16 +182,16 @@ public:
 
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
-            (      0, uint256S("0xdda48247df4e38ae666048683301c7e0b3dd938018980cf1731a53dee7f81315"))
+            (      0, uint256S("89a4b9b3f05df207c0a731d785e37feea6bfad4e7f6ef8b22910d86b3de229b7"))
         };
 
         chainTxData = ChainTxData{
             // Data as of block 954c7c66dee51f0a3fb1edb26200b735f5275fe54d9505c76ebd2bcabac36f1e (height 3606083).
             // Tx estimate based on average of year 2021 (~40k transactions per day)
-            1613217681, // * UNIX timestamp of last checkpoint block
+            1631123996, // * UNIX timestamp of last checkpoint block
             0,          // * total number of transactions between genesis and last checkpoint
                         //   (the tx=... number in the SetBestChain debug.log lines)
-            0.01        // * estimated number of transactions per second after checkpoint
+            0.00000001  // * estimated number of transactions per second after checkpoint
         };
     }
 };

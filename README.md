@@ -1,12 +1,13 @@
-# CoinGreen Core 
+# CoinGreen Reference Implementation
 
-## License – MIT license ⚖️
-CoinGreen Core is released under the terms of the MIT license. See
-[COPYING](COPYING) for more information or see
+## License – MIT license
+CoinGreen Core is released under the terms of the MIT license. See [COPYING](COPYING) for more information or see
 [opensource.org](https://opensource.org/licenses/MIT)
 
 ## Status
-[![Windows GUI build](https://github.com/maxirmx/CoinGreen/actions/workflows/windows-gui.yml/badge.svg)](https://github.com/maxirmx/CoinGreen/actions/workflows/windows-gui.yml)
+[![Windows build (with reference GUI)](https://github.com/coin-green/CoinGreen/actions/workflows/windows-build.yml/badge.svg)](https://github.com/coin-green/CoinGreen/actions/workflows/windows-build.yml)
+
+[![Ubuntu build (backbone only)](https://github.com/coin-green/CoinGreen/actions/workflows/ubuntu-build.yml/badge.svg)](https://github.com/coin-green/CoinGreen/actions/workflows/ubuntu-build.yml)
 
 ## Development and contributions – omg developers
 Development is ongoing, and the development team, as well as other volunteers,
@@ -14,7 +15,8 @@ can freely work in their own trees and submit pull requests when features or
 bug fixes are ready.
 
 #### Version strategy
-Version numbers are following ```major.minor.patch``` semantics.
+Version numbers are following ```major.minor.patch.build``` semantics.
+Version number shall be changes at configure script.
 
 #### Branches
 There are 3 types of branches in this repository:

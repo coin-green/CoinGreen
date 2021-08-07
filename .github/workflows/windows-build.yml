@@ -1,0 +1,73 @@
+name: Windows build (with reference GUI)
+# -------------------------------------------------
+# no tests, no benchmarking
+# -------------------------------------------------
+
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - 'docs/**'
+      - '**.adoc'
+      - '**.md'  
+  pull_request:
+    paths-ignore:
+      - 'docs/**'
+      - '**.adoc'
+      - '**.md'  
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  BUILD_TYPE: Release
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout the repo
+      uses: actions/checkout@v2
+      with:
+         fetch-depth: 1
+
+    - name: Cache dependencies
+      id: cache
+      uses : actions/cache@v2
+      with:
+         path: | 
+          ${{github.workspace}}/depends/sources
+          ${{github.workspace}}/depends/work
+          ${{github.workspace}}/depends/x86_64-w64-mingw32
+          ${{github.workspace}}/depends/built
+         key: ${{ runner.os }}-x86_64-w64-mingw32-${{ hashFiles('**/depends/Makefile') }}
+
+    - name: Install packages Ubuntu
+      run: | 
+        sudo DEBIAN_FRONTEND=noninteractive apt-get install -yq build-essential libtool autotools-dev \
+             automake pkg-config bsdmainutils curl g++-mingw-w64-x86-64 mingw-w64-x86-64-dev
+    
+    - name: Build and install dependencies
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: |
+        cd ${{github.workspace}}/depends
+        make HOST=x86_64-w64-mingw32 -j4
+        cd ${{github.workspace}}    
+    
+    - name: Build CoinGreen
+      run: |
+        sudo update-alternatives --install /usr/bin/x86_64-w64-mingw32-g++ x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-c++-posix 1100
+        cd ${{github.workspace}}
+        ./autogen.sh
+        CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/  --disable-tests --disable-bench
+        make -j4
+        mkdir ${{github.workspace}}/deploy
+        cp ${{github.workspace}}/src/qt/coingreen-qt.exe ${{github.workspace}}/deploy/coingreen-gui.exe
+        cp ${{github.workspace}}/src/*.exe ${{github.workspace}}/deploy/
+
+    - uses: actions/upload-artifact@v2
+      with:
+         name: windows-binaries
+         path: ${{github.workspace}}/deploy/*.exe

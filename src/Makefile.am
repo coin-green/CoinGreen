@@ -31,14 +31,14 @@ LIBCOINGREEN_CONSENSUS=libcoingreen_consensus.a
 LIBCOINGREEN_CLI=libcoingreen_cli.a
 LIBCOINGREEN_UTIL=libcoingreen_util.a
 LIBCOINGREEN_CRYPTO=crypto/libcoingreen_crypto.a
-LIBDOGECOINQT=qt/libdogecoinqt.a
+LIBCOINGREENQT=qt/libcoingreenqt.a
 LIBSECP256K1=secp256k1/libsecp256k1.la
 
 if ENABLE_ZMQ
 LIBCOINGREEN_ZMQ=libcoingreen_zmq.a
 endif
 if BUILD_BITCOIN_LIBS
-LIBDOGECOINCONSENSUS=libdogecoinconsensus.la
+LIBCOINGREENCONSENSUS=libcoingreenconsensus.la
 endif
 if ENABLE_WALLET
 LIBCOINGREEN_WALLET=libcoingreen_wallet.a
@@ -59,7 +59,7 @@ EXTRA_LIBRARIES += \
   $(LIBCOINGREEN_WALLET) \
   $(LIBCOINGREEN_ZMQ)
 
-lib_LTLIBRARIES = $(LIBDOGECOINCONSENSUS)
+lib_LTLIBRARIES = $(LIBCOINGREENCONSENSUS)
 
 bin_PROGRAMS =
 noinst_PROGRAMS =
@@ -436,16 +436,16 @@ coingreen_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 # bitcoinconsensus library #
 if BUILD_BITCOIN_LIBS
 include_HEADERS = script/bitcoinconsensus.h
-libdogecoinconsensus_la_SOURCES = $(crypto_libcoingreen_crypto_a_SOURCES) $(libcoingreen_consensus_a_SOURCES)
+libcoingreenconsensus_la_SOURCES = $(crypto_libcoingreen_crypto_a_SOURCES) $(libcoingreen_consensus_a_SOURCES)
 
 if GLIBC_BACK_COMPAT
-  libdogecoinconsensus_la_SOURCES += compat/glibc_compat.cpp
+  libcoingreenconsensus_la_SOURCES += compat/glibc_compat.cpp
 endif
 
-libdogecoinconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS)
-libdogecoinconsensus_la_LIBADD = $(LIBSECP256K1)
-libdogecoinconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_BITCOIN_INTERNAL
-libdogecoinconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libcoingreenconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS)
+libcoingreenconsensus_la_LIBADD = $(LIBSECP256K1)
+libcoingreenconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_BITCOIN_INTERNAL
+libcoingreenconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 
 endif
 #

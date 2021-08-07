@@ -3,7 +3,7 @@
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 bin_PROGRAMS += qt/coingreen-qt
-EXTRA_LIBRARIES += qt/libdogecoinqt.a
+EXTRA_LIBRARIES += qt/libcoingreenqt.a
 
 # bitcoin qt core #
 QT_TS = \
@@ -242,9 +242,9 @@ RES_ICONS = \
   qt/res/icons/address-book.png \
   qt/res/icons/about.png \
   qt/res/icons/about_qt.png \
-  qt/res/icons/bitcoin.ico \
-  qt/res/icons/bitcoin_testnet.ico \
-  qt/res/icons/bitcoin.png \
+  qt/res/icons/coingreen.ico \
+  qt/res/icons/coingreen_testnet.ico \
+  qt/res/icons/coingreen.png \
   qt/res/icons/chevron.png \
   qt/res/icons/clock1.png \
   qt/res/icons/clock2.png \
@@ -378,14 +378,14 @@ BITCOIN_RC = qt/res/bitcoin-qt-res.rc
 BITCOIN_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
   -I$(builddir)/qt/forms -DQT_NO_KEYWORDS
 
-qt_libdogecoinqt_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+qt_libcoingreenqt_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
   $(QT_INCLUDES) $(QT_DBUS_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS)
-qt_libdogecoinqt_a_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+qt_libcoingreenqt_a_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
 
-qt_libdogecoinqt_a_SOURCES = $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(QT_FORMS_UI) \
+qt_libcoingreenqt_a_SOURCES = $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(QT_FORMS_UI) \
   $(QT_QRC) $(QT_QRC_LOCALE) $(QT_TS) $(PROTOBUF_PROTO) $(RES_ICONS) $(RES_IMAGES) $(RES_MOVIES) $(RES_FONTS)
 
-nodist_qt_libdogecoinqt_a_SOURCES = $(QT_MOC_CPP) $(QT_MOC) $(PROTOBUF_CC) \
+nodist_qt_libcoingreenqt_a_SOURCES = $(QT_MOC_CPP) $(QT_MOC) $(PROTOBUF_CC) \
   $(PROTOBUF_H) $(QT_QRC_CPP) $(QT_QRC_LOCALE_CPP)
 
 # forms/foo.h -> forms/ui_foo.h
@@ -394,7 +394,7 @@ QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:
 # Most files will depend on the forms and moc files as includes. Generate them
 # before anything else.
 $(QT_MOC): $(QT_FORMS_H)
-$(qt_libdogecoinqt_a_OBJECTS) $(qt_coingreen_qt_OBJECTS) : | $(QT_MOC)
+$(qt_libcoingreenqt_a_OBJECTS) $(qt_coingreen_qt_OBJECTS) : | $(QT_MOC)
 
 #Generating these with a half-written protobuf header leads to wacky results.
 #This makes sure it's done.
@@ -413,7 +413,7 @@ endif
 if TARGET_WINDOWS
   qt_coingreen_qt_SOURCES += $(BITCOIN_RC)
 endif
-qt_coingreen_qt_LDADD = qt/libdogecoinqt.a $(LIBCOINGREEN_SERVER)
+qt_coingreen_qt_LDADD = qt/libcoingreenqt.a $(LIBCOINGREEN_SERVER)
 if ENABLE_WALLET
 qt_coingreen_qt_LDADD += $(LIBCOINGREEN_WALLET)
 endif
@@ -451,12 +451,12 @@ $(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_MOVIES) 
 	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name bitcoin $< | \
 	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 
-CLEAN_QT = $(nodist_qt_libdogecoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno
+CLEAN_QT = $(nodist_qt_libcoingreenqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno
 
 CLEANFILES += $(CLEAN_QT)
 
 coingreen_qt_clean: FORCE
-	rm -f $(CLEAN_QT) $(qt_libdogecoinqt_a_OBJECTS) $(qt_coingreen_qt_OBJECTS) qt/coingreen-qt$(EXEEXT) $(LIBDOGECOINQT)
+	rm -f $(CLEAN_QT) $(qt_libcoingreenqt_a_OBJECTS) $(qt_coingreen_qt_OBJECTS) qt/coingreen-qt$(EXEEXT) $(LIBCOINGREENQT)
 
 coingreen_qt : qt/coingreen-qt$(EXEEXT)
 

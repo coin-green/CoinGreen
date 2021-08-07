@@ -123,9 +123,15 @@ bool CheckAuxPowProofOfWork(const CBlockHeader& block, const Consensus::Params& 
     return true;
 }
 
-CAmount GetDogecoinBlockSubsidy(int nHeight, const Consensus::Params& consensusParams, uint256 prevHash)
+CAmount GetCoinGreenBlockSubsidy(int nHeight, const Consensus::Params&, uint256)
 {
-    int halvings = nHeight / consensusParams.nSubsidyHalvingInterval;
+    int rewards_pre  = REWARD_PER_BLOCK*(nHeight-1) + GENESIS_BLOCK_REWARD;
+    int rewards_rem  = INITIAL_SUPPLY - rewards_pre;
+    int reward       = std::max(0, std::min(rewards_rem, REWARD_PER_BLOCK));       
+
+    return reward * COIN;
+
+/*    int halvings = nHeight / consensusParams.nSubsidyHalvingInterval;
 
     if (!consensusParams.fSimplifiedRewards)
     {
@@ -145,6 +151,7 @@ CAmount GetDogecoinBlockSubsidy(int nHeight, const Consensus::Params& consensusP
         // Constant inflation
         return 10000 * COIN;
     }
+*/
 }
 
 CAmount GetDogecoinMinRelayFee(const CTransaction& tx, unsigned int nBytes, bool fAllowFree)
