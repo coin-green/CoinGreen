@@ -56,8 +56,8 @@ not straightforward.
 
 ### Such ports
 
-- RPC 22555
-- P2P 22556
+- RPC 34557
+- P2P 34558
 
 ## Development tips and tricks
 

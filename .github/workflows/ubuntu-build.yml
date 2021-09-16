@@ -1,9 +1,13 @@
 name: Ubuntu build (backbone only)
+# -------------------------------------------------
+# no tests no benchmarking
+# -------------------------------------------------
 
 on:
   push:
     branches:
       - master
+      - 2.0.0.3
     paths-ignore:
       - 'docs/**'
       - '**.adoc'
@@ -62,7 +66,7 @@ jobs:
           tar xvfz db-5.1.29.NC.tar.gz && cd db-5.1.29.NC
           sed -i.old 's/__atomic_compare_exchange/__atomic_compare_exchange_db/' src/dbinc/atomic.h
           cd build_unix
-          ../dist/configure --enable-cxx --disable-shared --with-pic --prefix=${{env.BDB_PREFIX}}
+          ../dist/configure --enable-cxx --disable-shared --with-pic --prefix=${{env.BDB_PREFIX}} 
           make -j4
         fi
         sudo make install
@@ -71,8 +75,11 @@ jobs:
       run: |
         cd ${{github.workspace}}
         ./autogen.sh
-        ./configure
+        ./configure --disable-tests --disable-bench
         make -j4
+        cp ${{github.workspace}}/src/coingreend ${{github.workspace}}/deploy/ubuntu/
+        cp ${{github.workspace}}/src/coingreen-cli ${{github.workspace}}/deploy/ubuntu/
+        cp ${{github.workspace}}/src/coingreen-tx ${{github.workspace}}/deploy/ubuntu/
 
 #    - name: Run tests
 #      run: |
@@ -87,8 +94,5 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
          name: ubuntu-binaries
-         path: |
-           ${{github.workspace}}/src/coingreend
-           ${{github.workspace}}/src/coingreen-cli
-           ${{github.workspace}}/src/coingreen-tx
+         path: ${{github.workspace}}/deploy/ubuntu
 

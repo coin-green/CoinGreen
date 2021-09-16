@@ -164,17 +164,17 @@ public:
     CAmount GetDustThreshold(const CFeeRate &minRelayTxFee) const
     {
         // "Dust" is defined in terms of CTransaction::minRelayTxFee,
-        // which has units satoshis-per-kilobyte.
+        // which has units GreenLeaves-per-kilobyte.
         // If you'd pay more than 1/3 in fees
         // to spend something, then we consider it dust.
         // A typical spendable non-segwit txout is 34 bytes big, and will
         // need a CTxIn of at least 148 bytes to spend:
         // so dust is a spendable txout less than
-        // 546*minRelayTxFee/1000 (in satoshis).
+        // 546*minRelayTxFee/1000 (in GreenLeaves).
         // A typical spendable segwit txout is 31 bytes big, and will
         // need a CTxIn of at least 67 bytes to spend:
         // so dust is a spendable txout less than
-        // 294*minRelayTxFee/1000 (in satoshis).
+        // 294*minRelayTxFee/1000 (in GreenLeaves).
         if (scriptPubKey.IsUnspendable())
             return 0;
 

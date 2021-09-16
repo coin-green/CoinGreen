@@ -1,12 +1,13 @@
 name: Windows build (with reference GUI)
 # -------------------------------------------------
-# no tests, no benchmarking
+# no tests no benchmarking
 # -------------------------------------------------
 
 on:
   push:
     branches:
       - master
+      - 2.0.0.3
     paths-ignore:
       - 'docs/**'
       - '**.adoc'
@@ -44,7 +45,7 @@ jobs:
           ${{github.workspace}}/depends/built
          key: ${{ runner.os }}-x86_64-w64-mingw32-${{ hashFiles('**/depends/Makefile') }}
 
-    - name: Install packages Ubuntu
+    - name: Install packages Windows
       run: | 
         sudo DEBIAN_FRONTEND=noninteractive apt-get install -yq build-essential libtool autotools-dev \
              automake pkg-config bsdmainutils curl g++-mingw-w64-x86-64 mingw-w64-x86-64-dev
@@ -63,11 +64,12 @@ jobs:
         ./autogen.sh
         CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/  --disable-tests --disable-bench
         make -j4
-        mkdir ${{github.workspace}}/deploy
-        cp ${{github.workspace}}/src/qt/coingreen-qt.exe ${{github.workspace}}/deploy/coingreen-gui.exe
-        cp ${{github.workspace}}/src/*.exe ${{github.workspace}}/deploy/
+        cp ${{github.workspace}}/src/qt/coingreen-qt.exe ${{github.workspace}}/deploy/windows/coingreen-gui.exe
+        cp ${{github.workspace}}/src/*.exe ${{github.workspace}}/deploy/windows/
+    - name: Run tests
+      run: make check
 
     - uses: actions/upload-artifact@v2
       with:
          name: windows-binaries
-         path: ${{github.workspace}}/deploy/*.exe
+         path: ${{github.workspace}}/deploy/windows

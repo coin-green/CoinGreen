@@ -108,11 +108,13 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 0; // Disabled
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000141a39e783aad4f660f");
+        // Doge: consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000141a39e783aad4f660f");
+        consensus.nMinimumChainWork = uint256S("0x00"); 
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x77e3f4a4bcb4a2c15e8015525e3d15b466f6c022f6ca82698f329edef7d9777e"); // 2,510,150
-
+        // Doge: consensus.defaultAssumeValid = uint256S("0x77e3f4a4bcb4a2c15e8015525e3d15b466f6c022f6ca82698f329edef7d9777e"); // 2,510,150
+        consensus.defaultAssumeValid = uint256S("0x00"); 
+        
         // AuxPoW parameters
         consensus.nAuxpowChainId = 0x0062; // 98 - Josh Wise!
         consensus.fStrictChainId = true;
@@ -147,7 +149,7 @@ public:
         pchMessageStart[2] = 0xc0;
         pchMessageStart[3] = 0xc0;
         vAlertPubKey = ParseHex("04d4da7a5dae4db797d9b0644d57a5cd50e05a70f36091cd62e2fc41c98ded06340be5a43a35e185690cd9cde5d72da8f6d065b499b06f51dcfba14aad859f443a");
-        nDefaultPort = 22556;
+        nDefaultPort = 34558;
         nPruneAfterHeight = 100000;
 
 // CoinGreen v1:   genesis = CreateGenesisBlock(1627165281, 774980, 0x1e0ffff0, 1, 88 * COIN);
@@ -248,10 +250,11 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 0; // Disabled
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000001030d1382ade");
-
+        // Doge: consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000001030d1382ade");
+        consensus.nMinimumChainWork = uint256S("0x00"); 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x6943eaeaba98dc7d09f7e73398daccb4abcabb18b66c8c875e52b07638d93951"); // 900,000
+        // Doge:  consensus.defaultAssumeValid = uint256S("0x6943eaeaba98dc7d09f7e73398daccb4abcabb18b66c8c875e52b07638d93951"); // 900,000
+        consensus.defaultAssumeValid = uint256S("0x00"); 
 
         // AuxPoW parameters
         consensus.nAuxpowChainId = 0x0062; // 98 - Josh Wise!

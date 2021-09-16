@@ -83,6 +83,7 @@ Bitcoin-Qt.app
 Makefile.test
 coingreen-qt_test
 src/test/buildenv.py
+src/test/wallet.backup
 
 # Resources cpp
 qrc_*.cpp
