@@ -1,9 +1,13 @@
 Sample configuration files for:
 
 SystemD: coingreend.service
+
 Upstart: coingreend.conf
+
 OpenRC:  coingreend.openrc
          coingreend.openrcconf
+
+
 CentOS:  coingreend.init
 OS X:    org.coingreen.coingreend.plist
 

@@ -1,5 +1,5 @@
 [Unit]
-Description=Dogecoin's distributed currency daemon
+Description=CoinGreen's distributed currency daemon
 After=network.target
 
 [Service]
