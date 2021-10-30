@@ -1,5 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
+// Copyright (c) 2021      CoinGreen Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -54,12 +55,12 @@ static const bool DEFAULT_WHITELISTRELAY = true;
 /** Default for DEFAULT_WHITELISTFORCERELAY. */
 static const bool DEFAULT_WHITELISTFORCERELAY = true;
 /** Default for -minrelaytxfee, minimum relay fee for transactions */
-static const unsigned int DEFAULT_MIN_RELAY_TX_FEE = COIN;
+static const unsigned int DEFAULT_MIN_RELAY_TX_FEE = 0.001 * COIN;
 //! -maxtxfee default
-static const CAmount DEFAULT_TRANSACTION_MAXFEE = 400 * COIN;
-//! Discourage users to set fees higher than this amount (in GreenLeaves) per kB
-static const CAmount HIGH_TX_FEE_PER_KB = 25 * COIN;
-//! -maxtxfee will warn if called with a higher fee than this amount (in GreenLeaves)
+static const CAmount DEFAULT_TRANSACTION_MAXFEE = 1.6 * COIN; // Was 400 * COIN  
+//! Discourage users to set fees higher than this amount (in CG) per kB
+static const CAmount HIGH_TX_FEE_PER_KB = 0.1 * COIN;       // Was 25 * COIN
+//! -maxtxfee will warn if called with a higher fee than this amount (in CG)
 static const CAmount HIGH_MAX_TX_FEE = 10 * HIGH_TX_FEE_PER_KB;
 /** Default for -limitancestorcount, max number of in-mempool ancestors */
 static const unsigned int DEFAULT_ANCESTOR_LIMIT = 25;

@@ -1,2 +1,6 @@
 src/clientversion.cpp export-subst
+.gitattributes text eol=lf
 *.sh text eol=lf
+*.mk text eol=lf
+*.ac text eol=lf
+*.am text eol=lf

@@ -111,7 +111,7 @@ qa/cache/*
 
 /doc/doxygen/
 
-libbitcoinconsensus.pc
+libcoingreenconsensus.pc
 contrib/devtools/split-debug.sh
 
 .vs/

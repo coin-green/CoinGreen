@@ -288,7 +288,7 @@ libcoingreen_consensus_a_SOURCES = \
   primitives/transaction.h \
   pubkey.cpp \
   pubkey.h \
-  script/bitcoinconsensus.cpp \
+  script/coingreenconsensus.cpp \
   script/interpreter.cpp \
   script/interpreter.h \
   script/script.cpp \
@@ -433,9 +433,9 @@ coingreen_tx_LDADD = \
 coingreen_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 #
 
-# bitcoinconsensus library #
+# coingreenconsensus library #
 if BUILD_BITCOIN_LIBS
-include_HEADERS = script/bitcoinconsensus.h
+include_HEADERS = script/coingreenconsensus.h
 libcoingreenconsensus_la_SOURCES = $(crypto_libcoingreen_crypto_a_SOURCES) $(libcoingreen_consensus_a_SOURCES)
 
 if GLIBC_BACK_COMPAT
