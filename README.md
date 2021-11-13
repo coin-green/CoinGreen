@@ -5,9 +5,9 @@ CoinGreen Core is released under the terms of the MIT license. See [COPYING](COP
 [opensource.org](https://opensource.org/licenses/MIT)
 
 ## Status
-[![Windows build (with reference GUI)](https://github.com/coin-green/CoinGreen/actions/workflows/windows-build.yml/badge.svg)](https://github.com/coin-green/CoinGreen/actions/workflows/windows-build.yml)
+[![Windows build (with reference GUI)](https://github.com/coin-green/CoinGreen/actions/workflows/windows-build.yml/badge.svg)](https://github.com/coin-green/coingreen/actions/workflows/windows-build.yml)
 
-[![Ubuntu build (backbone only)](https://github.com/coin-green/CoinGreen/actions/workflows/ubuntu-build.yml/badge.svg)](https://github.com/coin-green/CoinGreen/actions/workflows/ubuntu-build.yml)
+[![Ubuntu build (backbone only)](https://github.com/coin-green/CoinGreen/actions/workflows/ubuntu-build.yml/badge.svg)](https://github.com/coin-green/coingreen/actions/workflows/ubuntu-build.yml)
 
 ## Development and contributions – omg developers
 Development is ongoing, and the development team, as well as other volunteers,
