@@ -1,8 +1,9 @@
 // Copyright (c) 2011-2016 The Bitcoin Core developers
+// Copyright     CoinGreen Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#define BOOST_TEST_MODULE Bitcoin Test Suite
+#define BOOST_TEST_MODULE CoinGreen Test Suite
 
 #include "test_bitcoin.h"
 

@@ -178,7 +178,7 @@ obj/build.h: FORCE
 	  $(abs_top_srcdir)
 libcoingreen_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between bitcoind and bitcoin-qt
+# server: shared between coingreend and coingreen-qt
 libcoingreen_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
 libcoingreen_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libcoingreen_server_a_SOURCES = \
@@ -230,7 +230,7 @@ libcoingreen_zmq_a_SOURCES = \
 endif
 
 
-# wallet: shared between bitcoind and bitcoin-qt, but only linked
+# wallet: shared between coingreend and coingreen-qt, but only linked
 # when wallet enabled
 libcoingreen_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libcoingreen_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
@@ -303,7 +303,7 @@ libcoingreen_consensus_a_SOURCES = \
   utilstrencodings.h \
   version.h
 
-# common: shared between bitcoind, and bitcoin-qt and non-server tools
+# common: shared between coingreend, and coingreen-qt and non-server tools
 libcoingreen_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libcoingreen_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libcoingreen_common_a_SOURCES = \
@@ -368,8 +368,8 @@ libcoingreen_cli_a_SOURCES = \
 nodist_libcoingreen_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
-# bitcoind binary #
-coingreend_SOURCES = bitcoind.cpp
+# coingreend binary #
+coingreend_SOURCES = coingreend.cpp
 coingreend_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 coingreend_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 coingreend_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)

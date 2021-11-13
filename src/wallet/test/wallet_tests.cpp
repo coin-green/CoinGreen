@@ -494,18 +494,18 @@ BOOST_FIXTURE_TEST_CASE(importwallet_rescan, TestChain240Setup)
 
 BOOST_AUTO_TEST_CASE(GetMinimumFee_test)
 {
-    uint64_t value = 1000 * COIN; // 1,000 COINGREENS
+    uint64_t value = COIN; 
 
     CMutableTransaction tx;
     CTxMemPool pool(payTxFee);
     CTxOut txout1(value, (CScript)vector<unsigned char>(24, 0));
     tx.vout.push_back(txout1);
 
-    int64_t nMinTxFee = COIN;
+    int64_t nMinTxFee = COIN * 0.001;
 
     BOOST_CHECK_EQUAL(CWallet::GetMinimumFee(tx, 250, 0, pool), nMinTxFee);
     BOOST_CHECK_EQUAL(CWallet::GetMinimumFee(tx, 1000, 0, pool), nMinTxFee);
-    BOOST_CHECK_EQUAL(CWallet::GetMinimumFee(tx, 1999, 0, pool), 2 * nMinTxFee);
+    BOOST_CHECK_EQUAL(CWallet::GetMinimumFee(tx, 1900, 0, pool), 2 * nMinTxFee);
 }
 
 BOOST_AUTO_TEST_CASE(GetMinimumFee_dust_test)
@@ -513,12 +513,12 @@ BOOST_AUTO_TEST_CASE(GetMinimumFee_dust_test)
     // Derived from main net TX 3d6ec3ae2aca3ae0a6c65074fd8ee888cd7ed262f2cbaa25d33861989324a14e
     CMutableTransaction tx;
     CTxMemPool pool(payTxFee);
-    CTxOut txout1(139496846, (CScript)vector<unsigned char>(24, 0)); // Regular output
-    CTxOut txout2(15499649, (CScript)vector<unsigned char>(24, 0)); // Dust output
+    CTxOut txout1(139496.846, (CScript)vector<unsigned char>(24, 0)); // Regular output
+    CTxOut txout2(15499.649, (CScript)vector<unsigned char>(24, 0)); // Dust output
     tx.vout.push_back(txout1);
     tx.vout.push_back(txout2);
 
-    int64_t nMinTxFee = COIN;
+    int64_t nMinTxFee = COIN * 0.001;
 
     // Confirm dust penalty fees are added on
 
