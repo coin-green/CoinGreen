@@ -32,16 +32,17 @@ static
 struct {
     unsigned char extranonce;
     unsigned int nonce;
-} blockinfo[] = {
-    {4, 0x127fad2d}, {2, 0x335d1b8f}, {1, 0x33d47094}, {2, 0x0b09ec28},
-    {1, 0x06cf723b}, {2, 0x039202bc}, {1, 0x0a2c9d46}, {2, 0x6225cb92},
-    {2, 0x6ea1513e}, {1, 0x4401bef3}, {1, 0x04d3a1d2}, {2, 0x1c512825},
-    {2, 0x54a03b14}, {1, 0x6048e27d}, {1, 0x1b926afc}, {2, 0x68c4afbd},
-    {2, 0x4439c313}, {1, 0x1263fceb}, {2, 0x834dee3e}, {2, 0xf21ed9dc},
-    {1, 0xdcdac434}, {2, 0x4c1945be}, {1, 0x6d42a594}, {3, 0x20927a30},
-    {3, 0xfd60f461}, {2, 0xd9ad2207}, {2, 0xe7f69d1a}, {1, 0x7fa9b932},
-    {2, 0xb0511080}, {1, 0xe7d24cd5}, {2, 0x3c57e668}, {2, 0x83bfdc2e},
-    {2, 0x6eeb4e10}, {2, 0x9cacbcfd}, {2, 0xb27ea98e}, {2, 0x6d57c5a7},
+} blockinfo[] = {            
+    {4, 0x128298b5}, {2, 0x3366ec64}, {1, 0x33e3ad5e}, {2, 0x0b0f671f},        
+    {1, 0x0710be39}, {2, 0x039cfc93}, {1, 0x0a4080ec}, {2, 0x622d4a18},
+    {2, 0x6ea63c5a}, {1, 0x44055135}, {1, 0x04d965dc}, {2, 0x1c7a025f},
+    {2, 0x54a5b6f9}, {1, 0x604da05c}, {1, 0x1bce6527}, {2, 0x68c643a5},
+    {2, 0x4443eadd}, {1, 0x1295b056}, {2, 0x8355fbdb}, {2, 0xf225d4e0},
+    {1, 0xdd07bc41}, {2, 0x4c196365}, {1, 0x6d4f6ff4}, {3, 0x20c0b42c},
+    {3, 0xfd6a69b4}, {2, 0xd9b4b263}, {2, 0xe7ff2d4e}, {1, 0x7fd1f039},
+    {2, 0xb0514ad6}, {1, 0xe7d8bb8d}, {2, 0x3c5f0a51}, {2, 0x83c3c64d},
+    {2, 0x6ef51115}, {2, 0x9ce92a15}, 
+{2, 0xb27ea98e}, {2, 0x6d57c5a7},
     {1, 0x6deb4fa8}, {2, 0xabf625c6}, {2, 0x27e7c569}, {1, 0x89c6e991},
     {2, 0xc359bc28}, {1, 0x6f25768d}, {2, 0x654a4c31}, {1, 0x5cd03bab},
     {1, 0xda405f69}, {3, 0xfea453e5}, {2, 0x137d2c3a}, {5, 0xdee2f36e},
@@ -230,6 +231,14 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
         pblock->hashMerkleRoot = BlockMerkleRoot(*pblock);
         pblock->nNonce = blockinfo[i].nonce;
         std::shared_ptr<const CBlock> shared_pblock = std::make_shared<const CBlock>(*pblock);
+        std::cout << "i: " <<  i << std::endl; 
+	while(!ProcessNewBlock(chainparams, shared_pblock, true, NULL)) {
+            pblock->nNonce++;
+            shared_pblock = std::make_shared<const CBlock>(*pblock);
+        }	
+//--        pblock->nNonce--;
+//--        shared_pblock = std::make_shared<const CBlock>(*pblock);
+        std::cout << "nNonce: " <<  std::hex << shared_pblock->nNonce << std::endl; 
         BOOST_CHECK(ProcessNewBlock(chainparams, shared_pblock, true, NULL));
         pblock->hashPrevBlock = pblock->GetHash();
     }
