@@ -375,7 +375,7 @@ coingreend_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 coingreend_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-coingreend_SOURCES += bitcoind-res.rc
+coingreend_SOURCES += coingreend-res.rc
 endif
 
 coingreend_LDADD = \
@@ -400,7 +400,7 @@ coingreen_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 coingreen_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-coingreen_cli_SOURCES += bitcoin-cli-res.rc
+coingreen_cli_SOURCES += coingreen-cli-res.rc
 endif
 
 coingreen_cli_LDADD = \
@@ -419,7 +419,7 @@ coingreen_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 coingreen_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-coingreen_tx_SOURCES += bitcoin-tx-res.rc
+coingreen_tx_SOURCES += coingreen-tx-res.rc
 endif
 
 coingreen_tx_LDADD = \
