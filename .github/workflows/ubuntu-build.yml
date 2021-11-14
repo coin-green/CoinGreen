@@ -1,6 +1,6 @@
 name: Ubuntu build (backbone only)
 # -------------------------------------------------
-# no tests no benchmarking
+# no GUI no benchmarking
 # -------------------------------------------------
 
 on:
@@ -76,16 +76,16 @@ jobs:
       run: |
         cd ${{github.workspace}}
         ./autogen.sh
-        ./configure --disable-tests --disable-bench
+        ./configure --disable-bench  --disable-gui-tests
         make -j4
         cp ${{github.workspace}}/src/coingreend ${{github.workspace}}/deploy/ubuntu/
         cp ${{github.workspace}}/src/coingreen-cli ${{github.workspace}}/deploy/ubuntu/
         cp ${{github.workspace}}/src/coingreen-tx ${{github.workspace}}/deploy/ubuntu/
 
-#    - name: Run tests
-#      run: |
-#        cd ${{github.workspace}}
-#        make check
+    - name: Run tests
+      run: |
+        cd ${{github.workspace}}
+        make check
 
 #    - name: Install
 #      run: |

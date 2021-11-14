@@ -42,23 +42,22 @@ struct {
     {3, 0xfd6a69b4}, {2, 0xd9b4b263}, {2, 0xe7ff2d4e}, {1, 0x7fd1f039},
     {2, 0xb0514ad6}, {1, 0xe7d8bb8d}, {2, 0x3c5f0a51}, {2, 0x83c3c64d},
     {2, 0x6ef51115}, {2, 0x9ce92a15}, {2, 0xb287b9df}, {2, 0x6d7d1fb0},
-    {1, 0x6e021595}, {2, 0xac063911}, {2, 0x27e7d7c5}, 
-{1, 0x89c6e991},
-    {2, 0xc359bc28}, {1, 0x6f25768d}, {2, 0x654a4c31}, {1, 0x5cd03bab},
-    {1, 0xda405f69}, {3, 0xfea453e5}, {2, 0x137d2c3a}, {5, 0xdee2f36e},
-    {1, 0xeccbcf26}, {5, 0x9237dbaa}, {1, 0xb7b9350b}, {1, 0xcd0c7eb2},
-    {1, 0xf5ea5a32}, {2, 0x3486a7f3}, {1, 0xd0a0f2be}, {1, 0xe1238144},
-    {1, 0x28b98a9b}, {1, 0xe79d02aa}, {5, 0xf4555d56}, {5, 0x74da0bb7},
-    {1, 0x18728b91}, {1, 0x07ed3a93}, {6, 0xd7a5e106}, {2, 0xba50b06c},
-    {2, 0x952c830d}, {1, 0xfbd1bb18}, {1, 0x36126967}, {1, 0xcce357d0},
-    {2, 0xff1ec2d6}, {2, 0xbed5dfc9}, {1, 0x0d21fdd7}, {1, 0xd744edea},
-    {1, 0xe09fc8f2}, {5, 0x2ad325c5}, {5, 0x466b6549}, {1, 0x10705d49},
-    {1, 0xf88478ce}, {2, 0xbfda6c4a}, {2, 0x731fe414}, {1, 0x6f1b362e},
-    {2, 0x6be709cf}, {1, 0x60553200}, {2, 0xf6a992f0}, {2, 0x1521f7f5},
-    {1, 0x8b440273}, {1, 0xe9ade0c8}, {1, 0x4d414618}, {5, 0x7b48070d},
-    {1, 0x1202ebae}, {1, 0xd23fe97e}, {1, 0x8d1d6505}, {1, 0xfafbaae3},
-    {1, 0xf200353e}, {1, 0xe77bd65e}, {1, 0x9fa32102}, {2, 0x68dfa747},
-    {0, 0x7c74d78e}, {1, 0x9b79cc6b}, {2, 0xad957cc2}, {2, 0x91acb818}
+    {1, 0x6e021595}, {2, 0xac063911}, {2, 0x27e7d7c5}, {1, 0x89e17028},
+    {2, 0xc36455e5}, {1, 0x6f4150b8}, {2, 0x65620f16}, {1, 0x5cd98535},
+    {1, 0xda413c7e}, {3, 0xfea4d8bd}, {2, 0x13895899}, {5, 0xdf3ecd2e},
+    {1, 0xecda56a3}, {5, 0x9237df43}, {1, 0xb7e3e921}, {1, 0xcd1b2f51},
+    {1, 0xf5ea6444}, {2, 0x34952767}, {1, 0xd0c113d8}, {1, 0xe12a5688},
+    {1, 0x28c2774f}, {1, 0xe7a1cac1}, {5, 0xf45ca1a9}, {5, 0x7521feb3},
+    {1, 0x188808d2}, {1, 0x07fee442}, {6, 0xd7bc1304}, {2, 0xba5d3675},
+    {2, 0x954b5303}, {1, 0xfbc7254a}, {1, 0x360e22d3}, {1, 0xccbc6d99},
+    {2, 0xff07fad7}, {2, 0xbecd9b22}, {1, 0x0cfb2707}, {1, 0xd740975f},
+    {1, 0xe09b2ebd}, {5, 0x2ac49dfa}, {5, 0x465d8f83}, {1, 0x1066f8da},
+    {1, 0xf87eb6bf}, {2, 0xbfd03a5e}, {2, 0x73146dd6}, {1, 0x6f0de70a},
+    {2, 0x6be55ee7}, {1, 0x604687f1}, {2, 0xf697cdb0}, {2, 0x1520a2a5},
+    {1, 0x8b2d5762}, {1, 0xe9a0555c}, {1, 0x4d3e9b43}, {5, 0x7b23cc7c},
+    {1, 0x11eabee1}, {1, 0xd23c7c93}, {1, 0x8d172df4}, {1, 0xfaf8fcbb},
+    {1, 0xf1f39a84}, {1, 0xe75ebe2e}, {1, 0x9fa1fbf1}, {2, 0x68c1417b},
+    {0, 0x7c72738e}, {1, 0x9b73040f}, {2, 0xad5ebf66}, {2, 0x9197178d}
 };
 
 CBlockIndex CreateBlockIndex(int nHeight)
@@ -231,14 +230,6 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
         pblock->hashMerkleRoot = BlockMerkleRoot(*pblock);
         pblock->nNonce = blockinfo[i].nonce;
         std::shared_ptr<const CBlock> shared_pblock = std::make_shared<const CBlock>(*pblock);
-        std::cout << "i: " <<  i << std::endl; 
-	while(!ProcessNewBlock(chainparams, shared_pblock, true, NULL)) {
-            pblock->nNonce++;
-            shared_pblock = std::make_shared<const CBlock>(*pblock);
-        }	
-//--        pblock->nNonce--;
-//--        shared_pblock = std::make_shared<const CBlock>(*pblock);
-        std::cout << "nNonce: " <<  std::hex << shared_pblock->nNonce << std::endl; 
         BOOST_CHECK(ProcessNewBlock(chainparams, shared_pblock, true, NULL));
         pblock->hashPrevBlock = pblock->GetHash();
     }
@@ -246,10 +237,10 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
     // Just to make sure we can still make simple blocks
     BOOST_CHECK(pblocktemplate = BlockAssembler(chainparams).CreateNewBlock(scriptPubKey, true));
 
-    const CAmount BLOCKSUBSIDY = 50*COIN;
-    const CAmount LOWFEE = CENT;
-    const CAmount HIGHFEE = COIN;
-    const CAmount HIGHERFEE = 4*COIN;
+    const CAmount BLOCKSUBSIDY = 50*COIN * 0.001;
+    const CAmount LOWFEE = CENT * 0.001;
+    const CAmount HIGHFEE = COIN * 0.001;
+    const CAmount HIGHERFEE = 4*COIN * 0.001;
 
     // block sigops > limit: 1000 CHECKMULTISIG + 1
     tx.vin.resize(1);

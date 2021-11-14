@@ -1,6 +1,6 @@
 name: Windows build (with reference GUI)
 # -------------------------------------------------
-# no tests no benchmarking
+# no GUI tests no benchmarking
 # -------------------------------------------------
 
 on:
@@ -63,10 +63,11 @@ jobs:
         sudo update-alternatives --install /usr/bin/x86_64-w64-mingw32-g++ x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-c++-posix 1100
         cd ${{github.workspace}}
         ./autogen.sh
-        CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/  --disable-tests --disable-bench
+        CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/  --disable-bench  --disable-gui-tests
         make -j4
         cp ${{github.workspace}}/src/qt/coingreen-qt.exe ${{github.workspace}}/deploy/windows/coingreen-gui.exe
         cp ${{github.workspace}}/src/*.exe ${{github.workspace}}/deploy/windows/
+
     - name: Run tests
       run: make check
 
