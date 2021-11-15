@@ -178,7 +178,7 @@ obj/build.h: FORCE
 	  $(abs_top_srcdir)
 libcoingreen_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between bitcoind and bitcoin-qt
+# server: shared between coingreend and coingreen-qt
 libcoingreen_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
 libcoingreen_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libcoingreen_server_a_SOURCES = \
@@ -230,7 +230,7 @@ libcoingreen_zmq_a_SOURCES = \
 endif
 
 
-# wallet: shared between bitcoind and bitcoin-qt, but only linked
+# wallet: shared between coingreend and coingreen-qt, but only linked
 # when wallet enabled
 libcoingreen_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libcoingreen_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
@@ -303,7 +303,7 @@ libcoingreen_consensus_a_SOURCES = \
   utilstrencodings.h \
   version.h
 
-# common: shared between bitcoind, and bitcoin-qt and non-server tools
+# common: shared between coingreend, and coingreen-qt and non-server tools
 libcoingreen_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libcoingreen_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libcoingreen_common_a_SOURCES = \
@@ -358,7 +358,7 @@ if GLIBC_BACK_COMPAT
 libcoingreen_util_a_SOURCES += compat/glibc_compat.cpp
 endif
 
-# cli: shared between bitcoin-cli and bitcoin-qt
+# cli: shared between coingreen-cli and bitcoin-qt
 libcoingreen_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libcoingreen_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libcoingreen_cli_a_SOURCES = \
@@ -368,14 +368,14 @@ libcoingreen_cli_a_SOURCES = \
 nodist_libcoingreen_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
-# bitcoind binary #
-coingreend_SOURCES = bitcoind.cpp
+# coingreend binary #
+coingreend_SOURCES = coingreend.cpp
 coingreend_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 coingreend_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 coingreend_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-coingreend_SOURCES += bitcoind-res.rc
+coingreend_SOURCES += coingreend-res.rc
 endif
 
 coingreend_LDADD = \
@@ -394,13 +394,13 @@ coingreend_LDADD = \
 coingreend_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
 
 # coingreen-cli binary #
-coingreen_cli_SOURCES = bitcoin-cli.cpp
+coingreen_cli_SOURCES = coingreen-cli.cpp
 coingreen_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
 coingreen_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 coingreen_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-coingreen_cli_SOURCES += bitcoin-cli-res.rc
+coingreen_cli_SOURCES += coingreen-cli-res.rc
 endif
 
 coingreen_cli_LDADD = \
@@ -413,13 +413,13 @@ coingreen_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
 # coingreen-tx binary #
-coingreen_tx_SOURCES = bitcoin-tx.cpp
+coingreen_tx_SOURCES = coingreen-tx.cpp
 coingreen_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 coingreen_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 coingreen_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-coingreen_tx_SOURCES += bitcoin-tx-res.rc
+coingreen_tx_SOURCES += coingreen-tx-res.rc
 endif
 
 coingreen_tx_LDADD = \

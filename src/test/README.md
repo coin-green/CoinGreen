@@ -5,9 +5,9 @@ and tests weren't explicitly disabled.
 
 After configuring, they can be run with `make check`.
 
-To run the bitcoind tests manually, launch `src/test/test_bitcoin`.
+To run the coingreend tests manually, launch `src/test/test_bitcoin`.
 
-To add more bitcoind tests, add `BOOST_AUTO_TEST_CASE` functions to the existing
+To add more coingreend tests, add `BOOST_AUTO_TEST_CASE` functions to the existing
 .cpp files in the `test/` directory or add new .cpp files that
 implement new BOOST_AUTO_TEST_SUITE sections.
 
@@ -53,7 +53,7 @@ explaining how the boost unit test framework works:
 
 ### bitcoin-util-test.py
 
-The test directory also contains the bitcoin-util-test.py tool, which tests bitcoin utils (currently just bitcoin-tx). This test gets run automatically during the `make check` build process. It is also possible to run the test manually from the src directory:
+The test directory also contains the bitcoin-util-test.py tool, which tests coingreen utils (currently just coingreen-tx). This test gets run automatically during the `make check` build process. It is also possible to run the test manually from the src directory:
 
 ```
 test/bitcoin-util-test.py --srcdir=[current directory]
