@@ -16,6 +16,7 @@
 #include "validation.h"
 #include "miner.h"
 #include "net.h"
+#include "policy/mining_policy.h"
 #include "pow.h"
 #include "rpc/server.h"
 #include "txmempool.h"
@@ -30,6 +31,8 @@
 #include <boost/shared_ptr.hpp>
 
 #include <univalue.h>
+
+
 
 using namespace std;
 
@@ -100,7 +103,14 @@ UniValue getnetworkhashps(const JSONRPCRequest& request)
 
 UniValue generateBlocks(boost::shared_ptr<CReserveScript> coinbaseScript, int nGenerate, uint64_t nMaxTries, bool keepScript)
 {
-    // Dogecoin: Never mine witness tx
+
+    std::string reason;
+    int check = IsMiningAllowed(coinbaseScript->reserveScript, reason);
+    if (check != RPC_NO_ERROR) {
+        throw  JSONRPCError(check, reason);        
+    }
+
+    // Dogecoin & CoinGreen: Never mine witness tx
     const bool fMineWitnessTx = false;
     static const int nInnerLoopCount = 0x10000;
     int nHeightStart = 0;
@@ -125,7 +135,7 @@ UniValue generateBlocks(boost::shared_ptr<CReserveScript> coinbaseScript, int nG
             LOCK(cs_main);
             IncrementExtraNonce(pblock, chainActive.Tip(), nExtraNonce);
         }
-        // Dogecoin: Don't mine Aux blocks in regtest
+        // Dogecoin & CoinGreen : Don't mine Aux blocks in regtest
         //CAuxPow::initAuxPow(*pblock);
         //CPureBlockHeader& miningHeader = pblock->auxpow->parentBlock;
         while (nMaxTries > 0 && pblock->nNonce < nInnerLoopCount && !CheckProofOfWork(pblock->GetPoWHash(), pblock->nBits, Params().GetConsensus(nHeight))) {
@@ -766,6 +776,12 @@ UniValue submitblock(const JSONRPCRequest& request)
 
     if (block.vtx.empty() || !block.vtx[0]->IsCoinBase()) {
         throw JSONRPCError(RPC_DESERIALIZATION_ERROR, "Block does not start with a coinbase");
+    }
+
+    std::string reason;
+    int check = IsMiningAllowed(block.vtx[0]->vout[0].scriptPubKey, reason);
+    if (check != RPC_NO_ERROR) {
+        throw JSONRPCError(check, reason);
     }
 
     uint256 hash = block.GetHash();

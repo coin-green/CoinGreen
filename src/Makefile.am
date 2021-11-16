@@ -122,6 +122,7 @@ BITCOIN_CORE_H = \
   noui.h \
   policy/fees.h \
   policy/policy.h \
+  policy/mining_policy.h \
   policy/rbf.h \
   pow.h \
   primitives/block.h \
@@ -200,6 +201,7 @@ libcoingreen_server_a_SOURCES = \
   noui.cpp \
   policy/fees.cpp \
   policy/policy.cpp \
+  policy/mining_policy.cpp \
   pow.cpp \
   rest.cpp \
   rpc/blockchain.cpp \
