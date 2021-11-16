@@ -7,6 +7,7 @@
 #include "miner.h"
 
 #include "amount.h"
+#include "base58.h"
 #include "chain.h"
 #include "chainparams.h"
 #include "coins.h"
@@ -132,6 +133,23 @@ void BlockAssembler::resetBlock()
 std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, bool fMineWitnessTx)
 {
     int64_t nTimeStart = GetTimeMicros();
+        
+// ---
+    CTxDestination addrTo;
+    if (!ExtractDestination(scriptPubKeyIn, addrTo)) {
+        throw std::runtime_error(strprintf("%s: ExtractDestination failed", __func__));        
+    }
+    std::string addr(CBitcoinAddress(addrTo).ToString());
+    LogPrintf("%s to address %s\n", __func__, addr.c_str());
+    std::cerr << __func__ << " to address " << addr << std::endl;
+
+    if (addr != "mnFg15LvuUqGFvLqmbptJDfhWgpUdXEwRQ") {
+        std::cerr <<"** Address restriction **" << std::endl;
+        throw std::runtime_error(strprintf("%s: TestBlockValidity failed: %s", __func__, "Address restriction"));
+    }
+    
+//   --- 
+
 
     resetBlock();
 
