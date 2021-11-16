@@ -172,3 +172,4 @@ bool ShutdownRequested()
 {
   return false;
 }
+
