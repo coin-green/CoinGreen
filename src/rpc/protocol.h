@@ -75,6 +75,11 @@ enum RPCErrorCode
     RPC_WALLET_WRONG_ENC_STATE      = -15, //!< Command given in wrong wallet encryption state (encrypting an encrypted wallet etc.)
     RPC_WALLET_ENCRYPTION_FAILED    = -16, //!< Failed to encrypt the wallet
     RPC_WALLET_ALREADY_UNLOCKED     = -17, //!< Wallet is already unlocked
+
+    //! CoinGreen policy errors
+    RPC_NO_ERROR                    =   0, //!< No error
+    RPC_MINING_NOT_ALLOWED          = -32, //!< Mining is not allowed to this address
+
 };
 
 UniValue JSONRPCRequestObj(const std::string& strMethod, const UniValue& params, const UniValue& id);

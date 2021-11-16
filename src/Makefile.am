@@ -122,6 +122,7 @@ BITCOIN_CORE_H = \
   noui.h \
   policy/fees.h \
   policy/policy.h \
+  policy/mining_policy.h \
   policy/rbf.h \
   pow.h \
   primitives/block.h \
@@ -200,6 +201,7 @@ libcoingreen_server_a_SOURCES = \
   noui.cpp \
   policy/fees.cpp \
   policy/policy.cpp \
+  policy/mining_policy.cpp \
   pow.cpp \
   rest.cpp \
   rpc/blockchain.cpp \
@@ -358,7 +360,7 @@ if GLIBC_BACK_COMPAT
 libcoingreen_util_a_SOURCES += compat/glibc_compat.cpp
 endif
 
-# cli: shared between bitcoin-cli and bitcoin-qt
+# cli: shared between coingreen-cli and bitcoin-qt
 libcoingreen_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libcoingreen_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libcoingreen_cli_a_SOURCES = \
@@ -375,7 +377,7 @@ coingreend_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 coingreend_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-coingreend_SOURCES += bitcoind-res.rc
+coingreend_SOURCES += coingreend-res.rc
 endif
 
 coingreend_LDADD = \
@@ -394,13 +396,13 @@ coingreend_LDADD = \
 coingreend_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
 
 # coingreen-cli binary #
-coingreen_cli_SOURCES = bitcoin-cli.cpp
+coingreen_cli_SOURCES = coingreen-cli.cpp
 coingreen_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
 coingreen_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 coingreen_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-coingreen_cli_SOURCES += bitcoin-cli-res.rc
+coingreen_cli_SOURCES += coingreen-cli-res.rc
 endif
 
 coingreen_cli_LDADD = \
@@ -413,13 +415,13 @@ coingreen_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
 # coingreen-tx binary #
-coingreen_tx_SOURCES = bitcoin-tx.cpp
+coingreen_tx_SOURCES = coingreen-tx.cpp
 coingreen_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 coingreen_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 coingreen_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-coingreen_tx_SOURCES += bitcoin-tx-res.rc
+coingreen_tx_SOURCES += coingreen-tx-res.rc
 endif
 
 coingreen_tx_LDADD = \

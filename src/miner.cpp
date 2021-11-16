@@ -7,6 +7,7 @@
 #include "miner.h"
 
 #include "amount.h"
+#include "base58.h"
 #include "chain.h"
 #include "chainparams.h"
 #include "coins.h"
@@ -132,7 +133,7 @@ void BlockAssembler::resetBlock()
 std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, bool fMineWitnessTx)
 {
     int64_t nTimeStart = GetTimeMicros();
-
+        
     resetBlock();
 
     pblocktemplate.reset(new CBlockTemplate());
