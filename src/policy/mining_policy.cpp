@@ -38,7 +38,7 @@ int IsMiningAllowed(const CBitcoinAddress& addr, std::string& reason) {
 }
 
 int IsMiningAllowed(const CScript& scrpt, std::string& reason) {
-    bool ret = RPC_NO_ERROR;
+    int ret = RPC_NO_ERROR;
     CTxDestination addrTo;
     if (!ExtractDestination(scrpt, addrTo)) {
         reason = std::string("Mining was not allowed since ExtractDestination failed for coinbase script. This is an internal error, please report it to development team");
