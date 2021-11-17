@@ -1,1 +1,0 @@
-%~dp0\coingreen-gui.exe -addnode=18.185.53.200 -addnode=3.227.12.32
