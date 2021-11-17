@@ -147,12 +147,11 @@ public:
         pchMessageStart[0] = 0xc0;
         pchMessageStart[1] = 0xc0;
         pchMessageStart[2] = 0xc0;
-        pchMessageStart[3] = 0xc0;
+        pchMessageStart[3] = 0xc1;
         vAlertPubKey = ParseHex("04d4da7a5dae4db797d9b0644d57a5cd50e05a70f36091cd62e2fc41c98ded06340be5a43a35e185690cd9cde5d72da8f6d065b499b06f51dcfba14aad859f443a");
         nDefaultPort = 34558;
         nPruneAfterHeight = 100000;
 
-// CoinGreen v1:   genesis = CreateGenesisBlock(1627165281, 774980, 0x1e0ffff0, 1, 88 * COIN);
         genesis = CreateGenesisBlock(1631123996, 1116213, 0x1e0ffff0, 1, 88 * COIN);
 
         consensus.hashGenesisBlock = genesis.GetHash();
@@ -160,7 +159,6 @@ public:
         auxpowConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
 
         assert(genesis.hashMerkleRoot == uint256S("0x8d92c90adacac4d30083b56726716392cb433c2ec61fb5b3920705a0673ddf22"));
-// CoinGreen v1:    assert(consensus.hashGenesisBlock == uint256S("0xdda48247df4e38ae666048683301c7e0b3dd938018980cf1731a53dee7f81315"));
         assert(consensus.hashGenesisBlock == uint256S("0x89a4b9b3f05df207c0a731d785e37feea6bfad4e7f6ef8b22910d86b3de229b7"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
@@ -292,7 +290,7 @@ public:
         pchMessageStart[0] = 0xfc;
         pchMessageStart[1] = 0xc1;
         pchMessageStart[2] = 0xb7;
-        pchMessageStart[3] = 0xdc;
+        pchMessageStart[3] = 0xdd;
         vAlertPubKey = ParseHex("042756726da3c7ef515d89212ee1705023d14be389e25fe15611585661b9a20021908b2b80a3c7200a0139dd2b26946606aab0eef9aa7689a6dc2c7eee237fa834");
         nDefaultPort = 44556;
         nPruneAfterHeight = 1000;
@@ -408,7 +406,7 @@ public:
         pchMessageStart[0] = 0xfa;
         pchMessageStart[1] = 0xbf;
         pchMessageStart[2] = 0xb5;
-        pchMessageStart[3] = 0xda;
+        pchMessageStart[3] = 0xdb;
         nDefaultPort = 18444;
         nPruneAfterHeight = 1000;
 
