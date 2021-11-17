@@ -21,62 +21,7 @@ std::set<std::string> defaultAllowedAddresses = {
      "DTjNXq6evTztRAdRD6mqfGftLX359fixkQ" // maxirmx
  };
 
-
 std::set<std::string>& allowedAddresses = defaultAllowedAddresses;
-
-enum class FileStatus {created, modified, erased};
-
-class FileWatcher {
- public:
-     std::string toWatch;
-     std::time_t modTime;
-     std::chrono::duration<int, std::milli> delay;
- 
-     FileWatcher(std::string _toWatch, std::chrono::duration<int, std::milli> delay) : toWatch{_toWatch}, delay{delay}, modTime{0} {
-     }
-
-/*     void start(const std::function<void (std::string, FileStatus)> &action) {
-         while(running_) {
-             // Wait for "delay" milliseconds
-             std::this_thread::sleep_for(delay);
- 
-             auto it = paths_.begin();
-             while (it != paths_.end()) {
-                 if (!std::filesystem::exists(it->first)) {
-                     action(it->first, FileStatus::erased);
-                     it = paths_.erase(it);
-                 }
-                 else {
-                     it++;
-                 }
-             }
- 
-            // Check if a file was created or modified
-             for(auto &file : std::filesystem::recursive_directory_iterator(path_to_watch)) {
-                 auto current_file_last_write_time = std::filesystem::last_write_time(file);
- 
-                 // File creation
-                 if(!contains(file.path().string())) {
-                     paths_[file.path().string()] = current_file_last_write_time;
-                     action(file.path().string(), FileStatus::created);
-                 // File modification
-                 } else {
-                     if(paths_[file.path().string()] != current_file_last_write_time) {
-                         paths_[file.path().string()] = current_file_last_write_time;
-                         action(file.path().string(), FileStatus::modified);
-                     }
-                 }
-             } 
-         }
-     }*/
- private:
-//     std::unordered_map<std::string, std::filesystem::file_time_type> paths_;
-     bool running_ = true;
- 
-};
-
-
-
 
 int IsMiningAllowed(const std::string& addr, std::string& reason) {
     int ret = RPC_NO_ERROR;
@@ -93,7 +38,7 @@ int IsMiningAllowed(const CBitcoinAddress& addr, std::string& reason) {
 }
 
 int IsMiningAllowed(const CScript& scrpt, std::string& reason) {
-    bool ret = RPC_NO_ERROR;
+    int ret = RPC_NO_ERROR;
     CTxDestination addrTo;
     if (!ExtractDestination(scrpt, addrTo)) {
         reason = std::string("Mining was not allowed since ExtractDestination failed for coinbase script. This is an internal error, please report it to development team");
