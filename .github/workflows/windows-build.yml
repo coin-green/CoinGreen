@@ -7,7 +7,6 @@ on:
   push:
     branches:
       - master
-      - 2.0.0.6
     paths-ignore:
       - 'docs/**'
       - '**.adoc'
