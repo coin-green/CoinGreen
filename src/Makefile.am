@@ -123,6 +123,7 @@ BITCOIN_CORE_H = \
   policy/fees.h \
   policy/policy.h \
   policy/mining_policy.h \
+  policy/file_watch.hpp \
   policy/rbf.h \
   pow.h \
   primitives/block.h \

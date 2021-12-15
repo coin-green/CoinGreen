@@ -10,8 +10,7 @@
 #include <functional>
 #include <shared_mutex>
 
-#include <boost/filesystem/operations.hpp>
-
+#include "policy/filewatch.hpp"
 #include "policy/mining_policy.h"
 #include "rpc/protocol.h"
 #include "util.h"
