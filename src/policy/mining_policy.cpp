@@ -10,7 +10,7 @@
 #include <functional>
 #include <shared_mutex>
 
-#include "policy/filewatch.hpp"
+#include "policy/file_watch.hpp"
 #include "policy/mining_policy.h"
 #include "rpc/protocol.h"
 #include "util.h"
