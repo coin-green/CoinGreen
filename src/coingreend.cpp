@@ -19,6 +19,7 @@
 #include "httpserver.h"
 #include "httprpc.h"
 #include "utilstrencodings.h"
+#include "policy/mining_policy.h"
 
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/filesystem.hpp>
@@ -164,6 +165,13 @@ bool AppInit(int argc, char* argv[])
             return false;
 #endif // HAVE_DECL_DAEMON
         }
+
+        if (!InitMiningPolicyControl())
+        {
+            fprintf(stderr, "Failed to initialize mining policy\n");
+            return false;
+        }
+
 
         fRet = AppInitMain(threadGroup, scheduler);
     }
