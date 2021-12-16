@@ -22,6 +22,14 @@ std::set<std::string> defaultAllowedAddresses = {
 
 std::set<std::string>& allowedAddresses = defaultAllowedAddresses;
 
+bool InitMiningPolicyControl(void) {
+    return false;
+}
+
+bool ShutdownMiningPolicyControl(void) {
+    return false;
+}
+
 int IsMiningAllowed(const std::string& addr, std::string& reason) {
     int ret = RPC_NO_ERROR;
     auto search = allowedAddresses.find(addr);
