@@ -74,7 +74,7 @@ class MiningPolicyControl {
         CBitcoinAddress bAddr(addr);
         bool ret = false;
         if (bAddr.IsValid()) {
-          LogPrintf("%s: allowing mining for %s\n", __func__, addr.c_str());
+          LogPrintf("MiningPolicyControl: enabking mining for %s\n", __func__, addr.c_str());
           boost::unique_lock<boost::shared_mutex> uniqueLock(addrLock);
           allowedAddresses.insert(addr);
           ret = true;
