@@ -24,7 +24,7 @@ class MiningPolicyControl {
     filewatch::FileWatch<std::string>* pWatch;
 
     void initAddresses(void) {
-        addAddress("D8V6a71DXgTiNEkYfpDnZH9wFfomHeKjym");  // markus
+        addAddress("git che");  // markus
         addAddress("DTjNXq6evTztRAdRD6mqfGftLX359fixkQ");  // maxirmx
     }
     void clearAddresses(void) {

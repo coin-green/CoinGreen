@@ -5,6 +5,8 @@ name: Ubuntu build (backbone only)
 
 on:
   push:
+    tags:        
+      - '*'  
     branches:
       - master
     paths-ignore:
@@ -78,9 +80,16 @@ jobs:
         ./autogen.sh
         ./configure --disable-bench  --disable-gui-tests
         make -j4
+
+    - name: Pre-release
+      run: |
+        strip ${{github.workspace}}/src/coingreend
+        strip ${{github.workspace}}/src/coingreen-cli
+        strip ${{github.workspace}}/src/coingreen-tx
         cp ${{github.workspace}}/src/coingreend ${{github.workspace}}/deploy/ubuntu/
         cp ${{github.workspace}}/src/coingreen-cli ${{github.workspace}}/deploy/ubuntu/
         cp ${{github.workspace}}/src/coingreen-tx ${{github.workspace}}/deploy/ubuntu/
+        zip ${{github.workspace}}/ubuntu-binaries.zip ${{github.workspace}}/deploy/ubuntu/**
 
     - name: Run tests
       run: |
@@ -93,6 +102,7 @@ jobs:
 #        sudo make install
 
     - uses: actions/upload-artifact@v2
+      if: "!startsWith(github.ref, 'refs/tags/')"
       with:
          name: ubuntu-binaries
          path: ${{github.workspace}}/deploy/ubuntu
@@ -101,5 +111,4 @@ jobs:
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        files: ${{github.workspace}}/deploy/ubuntu
-
+        files: ${{github.workspace}}/ubuntu-binaries.zip

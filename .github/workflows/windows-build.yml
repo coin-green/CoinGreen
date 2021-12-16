@@ -5,6 +5,8 @@ name: Windows build (with reference GUI)
 
 on:
   push:
+    tags:        
+      - '*'  
     branches:
       - master
     paths-ignore:
@@ -65,14 +67,29 @@ jobs:
         ./autogen.sh
         CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/  --disable-bench  --disable-tests
         make -j4
+
+    - name: Pre-release
+      run: |
+        strip ${{github.workspace}}/src/coingreend.exe
+        strip ${{github.workspace}}/src/coingreen-cli.exe
+        strip ${{github.workspace}}/src/coingreen-tx.exe
+        strip ${{github.workspace}}/src/qt/coingreen-qt.exe
         cp ${{github.workspace}}/src/qt/coingreen-qt.exe ${{github.workspace}}/deploy/windows/coingreen-gui.exe
         cp ${{github.workspace}}/src/*.exe ${{github.workspace}}/deploy/windows/
+        zip ${{github.workspace}}/windows-binaries.zip ${{github.workspace}}/deploy/windows/**
 
 #    - name: Run tests
 #      run: | 
 #       make check
 #       
     - uses: actions/upload-artifact@v2
+      if: "!startsWith(github.ref, 'refs/tags/')"
       with:
          name: windows-binaries
          path: ${{github.workspace}}/deploy/windows
+
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: ${{github.workspace}}/windows-binaries.zip
