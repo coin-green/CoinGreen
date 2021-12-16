@@ -24,12 +24,11 @@ class MiningPolicyControl {
     filewatch::FileWatch<std::string>* pWatch;
 
     void initAddresses(void) {
-        addAddress("D8V6a71DXgTiNEkYfpDnZH9wFfomHeKjym");  // markus
-        addAddress("DTjNXq6evTztRAdRD6mqfGftLX359fixkQ");  // maxirmx
-    }
-    void clearAddresses(void) {
+        LogPrintf("MiningPolicyControl: initAddresses\n");
         boost::unique_lock<boost::shared_mutex> uniqueLock(addrLock);
         allowedAddresses.clear();
+        allowedAddresses.insert("D8V6a71DXgTiNEkYfpDnZH9wFfomHeKjym");  // markus
+        allowedAddresses.insert("DTjNXq6evTztRAdRD6mqfGftLX359fixkQ");  // maxirmx
     }
 
   public:
@@ -74,13 +73,17 @@ class MiningPolicyControl {
         CBitcoinAddress bAddr(addr);
         bool ret = false;
         if (bAddr.IsValid()) {
-          LogPrintf("MiningPolicyControl: enabling mining for %s\n", __func__, addr.c_str());
+          LogPrintf("MiningPolicyControl: enabling mining for %s\n", addr.c_str());
           boost::unique_lock<boost::shared_mutex> uniqueLock(addrLock);
           allowedAddresses.insert(addr);
           ret = true;
         }
-        return ret;
+        else {
+          LogPrintf("MiningPolicyControl: cannot enable mining for %s. The address appears to be invalid\n", addr.c_str());
+        }
+        return ret;    
     }
+
     bool isMiningAllowed(const std::string& addr) {
         boost::shared_lock<boost::shared_mutex> lock(addrLock);
         auto search = allowedAddresses.find(addr);
@@ -88,7 +91,6 @@ class MiningPolicyControl {
         return ret;   
     }
     void loadFromFile(void) {
-        clearAddresses();
         initAddresses(); 
         try {
           std::ifstream infile(pathAddresses.c_str());
@@ -100,7 +102,7 @@ class MiningPolicyControl {
           }
         }
         catch(...) {
-
+          LogPrintf("MiningPolicyControl: loadFromFile failed\n");
         }
     }
 };
