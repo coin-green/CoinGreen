@@ -76,7 +76,8 @@ jobs:
         strip ${{github.workspace}}/src/qt/coingreen-qt.exe
         cp ${{github.workspace}}/src/qt/coingreen-qt.exe ${{github.workspace}}/deploy/windows/coingreen-gui.exe
         cp ${{github.workspace}}/src/*.exe ${{github.workspace}}/deploy/windows/
-        zip ${{github.workspace}}/windows-binaries.zip ${{github.workspace}}/deploy/windows/**
+        cd ${{github.workspace}}/deploy/windows/
+        zip ${{github.workspace}}/windows-binaries.zip ./**
 
 #    - name: Run tests
 #      run: | 

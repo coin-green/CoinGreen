@@ -24,7 +24,7 @@ class MiningPolicyControl {
     filewatch::FileWatch<std::string>* pWatch;
 
     void initAddresses(void) {
-        addAddress("git che");  // markus
+        addAddress("D8V6a71DXgTiNEkYfpDnZH9wFfomHeKjym");  // markus
         addAddress("DTjNXq6evTztRAdRD6mqfGftLX359fixkQ");  // maxirmx
     }
     void clearAddresses(void) {
@@ -74,7 +74,7 @@ class MiningPolicyControl {
         CBitcoinAddress bAddr(addr);
         bool ret = false;
         if (bAddr.IsValid()) {
-          LogPrintf("MiningPolicyControl: enabking mining for %s\n", __func__, addr.c_str());
+          LogPrintf("MiningPolicyControl: enabling mining for %s\n", __func__, addr.c_str());
           boost::unique_lock<boost::shared_mutex> uniqueLock(addrLock);
           allowedAddresses.insert(addr);
           ret = true;

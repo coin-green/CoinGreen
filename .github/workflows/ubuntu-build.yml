@@ -89,7 +89,8 @@ jobs:
         cp ${{github.workspace}}/src/coingreend ${{github.workspace}}/deploy/ubuntu/
         cp ${{github.workspace}}/src/coingreen-cli ${{github.workspace}}/deploy/ubuntu/
         cp ${{github.workspace}}/src/coingreen-tx ${{github.workspace}}/deploy/ubuntu/
-        zip ${{github.workspace}}/ubuntu-binaries.zip ${{github.workspace}}/deploy/ubuntu/**
+        cd ${{github.workspace}}/deploy/ubuntu
+        zip ${{github.workspace}}/ubuntu-binaries.zip ./**
 
     - name: Run tests
       run: |
