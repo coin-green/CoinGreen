@@ -77,9 +77,9 @@ enum RPCErrorCode
     RPC_WALLET_ALREADY_UNLOCKED     = -17, //!< Wallet is already unlocked
 
     //! CoinGreen policy errors
-    RPC_NO_ERROR                    =   0, //!< No error
-    RPC_MINING_NOT_ALLOWED          = -32, //!< Mining is not allowed to this address
-
+    RPC_NO_ERROR                        =   0, //!< No error
+    RPC_MINING_NOT_ALLOWED              = -32, //!< Mining is not allowed to this address
+    RPC_MINING_CONTROL_NOT_INITIALIZED  = -33, //!< Mining control has not been initialized
 };
 
 UniValue JSONRPCRequestObj(const std::string& strMethod, const UniValue& params, const UniValue& id);

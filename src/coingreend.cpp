@@ -166,7 +166,7 @@ bool AppInit(int argc, char* argv[])
 #endif // HAVE_DECL_DAEMON
         }
 
-        if (!InitMiningPolicy())
+        if (!InitMiningPolicyControl())
         {
             fprintf(stderr, "Failed to initialize mining policy\n");
             return false;

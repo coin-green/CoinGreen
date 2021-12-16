@@ -9,7 +9,7 @@
 #include "script/standard.h"
 
 bool InitMiningPolicyControl(void);
-void ShutdownMiningPolicyControl();
+void ShutdownMiningPolicyControl(void);
 int IsMiningAllowed(const std::string& addr, std::string& reason);
 int IsMiningAllowed(const CBitcoinAddress& addr, std::string& reason);
 int IsMiningAllowed(const CScript& scrpt, std::string& reason);
