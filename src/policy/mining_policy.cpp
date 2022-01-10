@@ -33,36 +33,35 @@ class MiningPolicyControl {
 
   public:
     MiningPolicyControl(void): pathAddresses(GetDataDir() / "miners.dat") {
-        try {
+      try {
+        loadFromFile();
+        pWatch = new filewatch::FileWatch<std::string> (
+	        boost::filesystem::canonical(pathAddresses).string(), 
+	        [this](const std::string& path, const filewatch::Event change_type) {
+            const char* eventName = "unknown";
+            switch (change_type) {
+		          case filewatch::Event::added:
+                eventName = "added";
+                break;
+    	        case filewatch::Event::removed:
+                eventName = "removed";
+                break;
+              case filewatch::Event::modified:
+                eventName = "modified";
+                break;
+              case filewatch::Event::renamed_old:
+                eventName = "renamed to other name";
+                break;
+              case filewatch::Event::renamed_new:
+                eventName = "renamed from other file";
+                break;
+		        };
+            LogPrintf("MiningPolicyControl: %s has been %s\n", path.c_str(), eventName);
             loadFromFile();
-            pWatch = new filewatch::FileWatch<std::string>(
-	            boost::filesystem::canonical(pathAddresses).string(), 
-	            [this](const std::string& path, const filewatch::Event change_type) {
-                            const char* eventName = "unknown";
-                            switch (change_type) {
-		                          case filewatch::Event::added:
-                                eventName = "added";
-                                break;
-    	                        case filewatch::Event::removed:
-                                eventName = "removed";
-                                break;
-                              case filewatch::Event::modified:
-                                eventName = "modified";
-                                break;
-                              case filewatch::Event::renamed_old:
-                                eventName = "renamed to other name";
-                                break;
-                              case filewatch::Event::renamed_new:
-                                eventName = "renamed from other file";
-                                break;
-		                        };
-                            LogPrintf("MiningPolicyControl: %s has been %s\n", path.c_str(), eventName);
-                            loadFromFile();
-	            });
-        }
-        catch (...) {
-        }
-
+	        });
+      }
+      catch (...) {
+      }
     }
     ~MiningPolicyControl() {
         if (pWatch) {

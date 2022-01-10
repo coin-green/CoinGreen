@@ -89,18 +89,15 @@ jobs:
         cp ${{github.workspace}}/src/coingreend ${{github.workspace}}/deploy/ubuntu/
         cp ${{github.workspace}}/src/coingreen-cli ${{github.workspace}}/deploy/ubuntu/
         cp ${{github.workspace}}/src/coingreen-tx ${{github.workspace}}/deploy/ubuntu/
+        cp ${{github.workspace}}/contrib/init/coingreen.service ${{github.workspace}}/deploy/ubuntu/service
         cd ${{github.workspace}}/deploy/ubuntu
+        chmod +x start.sh
         zip -r ${{github.workspace}}/ubuntu-binaries.zip ./**
 
     - name: Run tests
       run: |
         cd ${{github.workspace}}
         make check
-
-#    - name: Install
-#      run: |
-#        cd ${{github.workspace}}
-#        sudo make install
 
     - uses: actions/upload-artifact@v2
       if: "!startsWith(github.ref, 'refs/tags/')"
