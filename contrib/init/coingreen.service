@@ -7,9 +7,10 @@ User=coingreen
 Group=coingreen
 
 Type=forking
-PIDFile=/var/lib/coingreend/coingreend.pid
-ExecStart=/usr/bin/coingreend -daemon -pid=/var/lib/coingreend/coingreend.pid \
--conf=/etc/coingreen/coingreen.conf -datadir=/var/lib/coingreend -disablewallet
+PIDFile=/home/coingreen/pid/coingreend.pid
+ExecStart=/home/coingreen/coingreend -daemon -pid=/home/coingreen/pid/coingreend.pid   \
+-conf=/home/coingreen/conf/coingreen.conf -datadir=/home/coingreen/data -disablewallet \
+-txindex=0
 
 Restart=always
 PrivateTmp=true
