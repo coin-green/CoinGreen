@@ -50,7 +50,7 @@ unsigned int MurmurHash3(unsigned int nHashSeed, const std::vector<unsigned char
 #ifdef __GNUC__
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wimplicit-fallthrough"
-#endif 
+#endif
         switch (vDataToHash.size() & 3) {
         case 3:
             k1 ^= tail[2] << 16;
@@ -65,7 +65,7 @@ unsigned int MurmurHash3(unsigned int nHashSeed, const std::vector<unsigned char
         }
 #ifdef __GNUC__
 #pragma GCC diagnostic pop
-#endif 
+#endif
     }
 
     //----------

@@ -1,6 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2021      CoinGreen Core developers 
+// Copyright (c) 2021      CoinGreen Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -42,7 +42,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  * Build the genesis block. Note that the output of its generation
  * transaction cannot be spent since it did not originally exist in the
  * database.
- * 
+ *
  * Generated with GenesisH0 script
  * https://github.com/bitflate/GenesisH0
  */
@@ -95,7 +95,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601; // January 1, 2008
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
-       
+
         // Deployment of BIP68, BIP112, and BIP113.
         // XXX: BIP heights and hashes all need to be updated to Dogecoin values
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
@@ -109,12 +109,12 @@ public:
 
         // The best chain should have at least this much work.
         // Doge: consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000141a39e783aad4f660f");
-        consensus.nMinimumChainWork = uint256S("0x00"); 
+        consensus.nMinimumChainWork = uint256S("0x00");
 
         // By default assume that the signatures in ancestors of this block are valid.
         // Doge: consensus.defaultAssumeValid = uint256S("0x77e3f4a4bcb4a2c15e8015525e3d15b466f6c022f6ca82698f329edef7d9777e"); // 2,510,150
-        consensus.defaultAssumeValid = uint256S("0x00"); 
-        
+        consensus.defaultAssumeValid = uint256S("0x00");
+
         // AuxPoW parameters
         consensus.nAuxpowChainId = 0x0062; // 98 - Josh Wise!
         consensus.fStrictChainId = true;
@@ -162,8 +162,8 @@ public:
         assert(consensus.hashGenesisBlock == uint256S("0x89a4b9b3f05df207c0a731d785e37feea6bfad4e7f6ef8b22910d86b3de229b7"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
-//        vSeeds.push_back(CDNSSeedData("multidoge.org", "seed.multidoge.org", true));
-//        vSeeds.push_back(CDNSSeedData("multidoge.org", "seed2.multidoge.org"));
+//        vSeeds.push_back(CDNSSeedData("coingreen.tech", "dnsseed.coingreen.tech", true));
+        vSeeds.push_back(CDNSSeedData("coingreen.tech", "dnsseed.coingreen.tech"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,30);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,22);
@@ -199,7 +199,7 @@ static CMainParams mainParams;
 
 /**
  * This is just dogecoin code
- * Testnet (v3)  
+ * Testnet (v3)
  */
 class CTestNetParams : public CChainParams {
 private:
@@ -249,10 +249,10 @@ public:
 
         // The best chain should have at least this much work.
         // Doge: consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000001030d1382ade");
-        consensus.nMinimumChainWork = uint256S("0x00"); 
+        consensus.nMinimumChainWork = uint256S("0x00");
         // By default assume that the signatures in ancestors of this block are valid.
         // Doge:  consensus.defaultAssumeValid = uint256S("0x6943eaeaba98dc7d09f7e73398daccb4abcabb18b66c8c875e52b07638d93951"); // 900,000
-        consensus.defaultAssumeValid = uint256S("0x00"); 
+        consensus.defaultAssumeValid = uint256S("0x00");
 
         // AuxPoW parameters
         consensus.nAuxpowChainId = 0x0062; // 98 - Josh Wise!

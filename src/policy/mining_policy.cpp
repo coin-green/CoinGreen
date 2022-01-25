@@ -36,7 +36,7 @@ class MiningPolicyControl {
       try {
         loadFromFile();
         pWatch = new filewatch::FileWatch<std::string> (
-	        boost::filesystem::canonical(pathAddresses).string(), 
+	        boost::filesystem::canonical(pathAddresses).string(),
 	        [this](const std::string& path, const filewatch::Event change_type) {
             const char* eventName = "unknown";
             switch (change_type) {
@@ -80,17 +80,17 @@ class MiningPolicyControl {
         else {
           LogPrintf("MiningPolicyControl: cannot enable mining for %s. The address appears to be invalid\n", addr.c_str());
         }
-        return ret;    
+        return ret;
     }
 
     bool isMiningAllowed(const std::string& addr) {
         boost::shared_lock<boost::shared_mutex> lock(addrLock);
         auto search = allowedAddresses.find(addr);
         bool ret  = (search != allowedAddresses.end());
-        return ret;   
+        return ret;
     }
     void loadFromFile(void) {
-        initAddresses(); 
+        initAddresses();
         try {
           std::ifstream infile(pathAddresses.c_str());
           if (infile) {
@@ -129,7 +129,7 @@ int IsMiningAllowed(const std::string& addr, std::string& reason) {
   if (!mpControl->isMiningAllowed(addr)) {
     reason = std::string("Mining to address ") + addr + std::string(" is not allowed");
     ret = RPC_MINING_NOT_ALLOWED;
-  }  
+  }
   return ret;
 }
 

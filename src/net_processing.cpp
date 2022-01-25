@@ -2536,7 +2536,7 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
                 // Relay
                 pfrom->setKnown.insert(alertHash);
                 {
-                    
+
                     connman.ForEachNode([&alert](CNode* pnode)
                     {
                         pnode->PushAlert(alert);

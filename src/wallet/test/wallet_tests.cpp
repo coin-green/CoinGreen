@@ -1,5 +1,5 @@
 // Copyright (c) 2012-2016 The Bitcoin Core developers
-// Copyright (c) 2021      CoinGreen Core developers 
+// Copyright (c) 2021      CoinGreen Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -494,7 +494,7 @@ BOOST_FIXTURE_TEST_CASE(importwallet_rescan, TestChain240Setup)
 
 BOOST_AUTO_TEST_CASE(GetMinimumFee_test)
 {
-    uint64_t value = COIN; 
+    uint64_t value = COIN;
 
     CMutableTransaction tx;
     CTxMemPool pool(payTxFee);

@@ -460,7 +460,7 @@ static bool rest_getutxos(HTTPRequest* req, const std::string& strURIPart)
 #ifdef __GNUC__
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wimplicit-fallthrough"
-#endif 
+#endif
     case RF_HEX: {
         // convert hex to bin, continue then with bin part
         std::vector<unsigned char> strRequestV = ParseHex(strRequestMutable);
@@ -488,7 +488,7 @@ static bool rest_getutxos(HTTPRequest* req, const std::string& strURIPart)
     }
 #ifdef __GNUC__
 #pragma GCC diagnostic pop
-#endif 
+#endif
 
     case RF_JSON: {
         if (!fInputParsed)

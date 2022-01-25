@@ -53,7 +53,7 @@ UniValue GetNetworkHashPS(int lookup, int height) {
     // If lookup is -1, then use blocks since last difficulty change.
     if (lookup <= 0)
         lookup = pb->nHeight % Params().GetConsensus(pb->nHeight).DifficultyAdjustmentInterval() + 1;
-    // 
+    //
 
     // If lookup is larger than chain, then set it to chain length.
     if (lookup > pb->nHeight)
@@ -107,7 +107,7 @@ UniValue generateBlocks(boost::shared_ptr<CReserveScript> coinbaseScript, int nG
     std::string reason;
     int check = IsMiningAllowed(coinbaseScript->reserveScript, reason);
     if (check != RPC_NO_ERROR) {
-        throw  JSONRPCError(check, reason);        
+        throw  JSONRPCError(check, reason);
     }
 
     // Dogecoin & CoinGreen: Never mine witness tx
@@ -225,7 +225,7 @@ UniValue generatetoaddress(const JSONRPCRequest& request)
     CBitcoinAddress address(request.params[1].get_str());
     if (!address.IsValid())
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Error: Invalid address");
-    
+
     boost::shared_ptr<CReserveScript> coinbaseScript(new CReserveScript());
     coinbaseScript->reserveScript = GetScriptForDestination(address.Get());
 
@@ -649,7 +649,7 @@ UniValue getblocktemplate(const JSONRPCRequest& request)
 #ifdef __GNUC__
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wimplicit-fallthrough"
-#endif 
+#endif
            case THRESHOLD_LOCKED_IN:
                 // Ensure bit is set in block version
                 pblock->nVersion |= VersionBitsMask(consensusParams, pos);
@@ -668,7 +668,7 @@ UniValue getblocktemplate(const JSONRPCRequest& request)
             }
 #ifdef __GNUC__
 #pragma GCC diagnostic pop
-#endif 
+#endif
             case THRESHOLD_ACTIVE:
             {
                 // Add to rules only

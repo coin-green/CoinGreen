@@ -120,8 +120,8 @@ public:
 
     CTxMemPoolEntry(const CTxMemPoolEntry& other);
 
-    CTxMemPoolEntry& operator= (const CTxMemPoolEntry&)  = default; 
-    CTxMemPoolEntry& operator= (      CTxMemPoolEntry&&) = default; 
+    CTxMemPoolEntry& operator= (const CTxMemPoolEntry&)  = default;
+    CTxMemPoolEntry& operator= (      CTxMemPoolEntry&&) = default;
 
     const CTransaction& GetTx() const { return *this->tx; }
     CTransactionRef GetSharedTx() const { return this->tx; }

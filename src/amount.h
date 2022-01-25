@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2021      CoinGreen Core developers 
+// Copyright (c) 2021      CoinGreen Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -50,9 +50,9 @@ public:
      * Return the fee in GreenLeaves for the given size in bytes.
      */
     CAmount GetFee(size_t nBytes) const;
-    
-    CFeeRate& operator= (const CFeeRate&)  = default; 
-    CFeeRate& operator= (      CFeeRate&&) = default; 
+
+    CFeeRate& operator= (const CFeeRate&)  = default;
+    CFeeRate& operator= (      CFeeRate&&) = default;
 
     /**
      * Return the fee in GreenLeaves for a size of 1000 bytes
