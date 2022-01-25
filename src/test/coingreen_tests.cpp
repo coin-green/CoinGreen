@@ -20,11 +20,11 @@ BOOST_AUTO_TEST_CASE(subsidy_limit_test)
     CAmount nSum = GENESIS_BLOCK_REWARD;
     uint256 prevHash = uint256S("0");
 
-    int threshold = (INITIAL_SUPPLY-GENESIS_BLOCK_REWARD)/REWARD_PER_BLOCK; 
+    int threshold = (INITIAL_SUPPLY-GENESIS_BLOCK_REWARD)/REWARD_PER_BLOCK;
 
     for (nHeight = 1; nHeight <= threshold; nHeight++) {
         nSubsidy = GetCoinGreenBlockSubsidy(nHeight, mainParams.GetConsensus(nHeight), prevHash);
-        nSum += nSubsidy;        
+        nSum += nSubsidy;
         BOOST_CHECK(nSubsidy == REWARD_PER_BLOCK * COIN);
     }
     nSubsidy = GetCoinGreenBlockSubsidy(nHeight, mainParams.GetConsensus(nHeight), prevHash);
@@ -37,7 +37,7 @@ BOOST_AUTO_TEST_CASE(subsidy_limit_test)
     nSubsidy = GetCoinGreenBlockSubsidy(nHeight+100, mainParams.GetConsensus(nHeight), prevHash);
     BOOST_CHECK(nSubsidy == 0);
 
-    
+
     BOOST_CHECK(nSum/COIN == (INITIAL_SUPPLY- GENESIS_BLOCK_REWARD));
 
 }

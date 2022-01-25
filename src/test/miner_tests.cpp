@@ -32,8 +32,8 @@ static
 struct {
     unsigned char extranonce;
     unsigned int nonce;
-} blockinfo[] = {            
-    {4, 0x128298b5}, {2, 0x3366ec64}, {1, 0x33e3ad5e}, {2, 0x0b0f671f},        
+} blockinfo[] = {
+    {4, 0x128298b5}, {2, 0x3366ec64}, {1, 0x33e3ad5e}, {2, 0x0b0f671f},
     {1, 0x0710be39}, {2, 0x039cfc93}, {1, 0x0a4080ec}, {2, 0x622d4a18},
     {2, 0x6ea63c5a}, {1, 0x44055135}, {1, 0x04d965dc}, {2, 0x1c7a025f},
     {2, 0x54a5b6f9}, {1, 0x604da05c}, {1, 0x1bce6527}, {2, 0x68c643a5},
@@ -189,7 +189,7 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
     // CScript scriptPubKey = CScript() << ParseHex("040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9") << OP_CHECKSIG;
     // changed this to CoinGreen genesis pubkey script
     CScript scriptPubKey = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
-    
+
     std::unique_ptr<CBlockTemplate> pblocktemplate;
     CMutableTransaction tx,tx2;
     CScript script;

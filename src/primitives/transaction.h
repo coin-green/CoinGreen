@@ -165,7 +165,7 @@ public:
     CAmount GetDustThreshold(const CFeeRate &minRelayTxFee) const
     {
         // CoingGreen: Anything below 0.001 COINGREEN is always dust
-        return scriptPubKey.IsUnspendable() ? 0 : 0.001*COIN;   
+        return scriptPubKey.IsUnspendable() ? 0 : 0.001*COIN;
     }
 
     bool IsDust(const CFeeRate &minRelayTxFee) const

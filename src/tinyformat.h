@@ -1,6 +1,6 @@
 // tinyformat.h
 // Copyright (C) 2011, Chris Foster [chris42f (at) gmail (d0t) com]
-// Copyright (c) 2021  CoinGreen Core developers 
+// Copyright (c) 2021  CoinGreen Core developers
 //
 // Boost Software License - Version 1.0
 //
@@ -697,7 +697,7 @@ inline const char* streamStateFromFormat(std::ostream& out, bool& spacePadPositi
 #ifdef __GNUC__
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wimplicit-fallthrough"
-#endif 
+#endif
     switch(*c)
     {
         case 'u': case 'd': case 'i':

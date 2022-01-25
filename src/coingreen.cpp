@@ -127,7 +127,7 @@ CAmount GetCoinGreenBlockSubsidy(int nHeight, const Consensus::Params&, uint256)
 {
     int rewards_pre  = REWARD_PER_BLOCK*(nHeight-1) + GENESIS_BLOCK_REWARD;
     int rewards_rem  = INITIAL_SUPPLY - rewards_pre;
-    int reward       = std::max(0, std::min(rewards_rem, REWARD_PER_BLOCK));       
+    int reward       = std::max(0, std::min(rewards_rem, REWARD_PER_BLOCK));
 
     return reward * COIN;
 

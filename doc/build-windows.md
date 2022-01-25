@@ -74,7 +74,7 @@ Then build using:
     CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/
     make
     
-Most likely above line will fail. If so run "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+Most likely above line will fail. If so run "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:"
 as discussed here: https://github.com/bitcoin/bitcoin/issues/10269
 
 Use POSIX threading model for MINGW as discussed here: 
@@ -103,7 +103,7 @@ Then build using:
     make
 
 
-Most likely above line will fail. If so run "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+Most likely above line will fail. If so run "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:"
 as discussed here: https://github.com/bitcoin/bitcoin/issues/10269
 
 Use POSIX threading model for MINGW as discussed here: 
