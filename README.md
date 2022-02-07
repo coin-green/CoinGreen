@@ -5,9 +5,14 @@ CoinGreen Core is released under the terms of the MIT license. See [COPYING](COP
 [opensource.org](https://opensource.org/licenses/MIT)
 
 ## Status
-[![Windows build (with reference GUI)](https://github.com/coin-green/CoinGreen/actions/workflows/windows-build.yml/badge.svg)](https://github.com/coin-green/coingreen/actions/workflows/windows-build.yml)
+[![Windows build](https://github.com/coin-green/CoinGreen/actions/workflows/windows-build.yml/badge.svg)](https://github.com/coin-green/coingreen/actions/workflows/windows-build.yml)
 
-[![Ubuntu build (backbone only)](https://github.com/coin-green/CoinGreen/actions/workflows/ubuntu-build.yml/badge.svg)](https://github.com/coin-green/coingreen/actions/workflows/ubuntu-build.yml)
+[![Ubuntu build](https://github.com/coin-green/CoinGreen/actions/workflows/ubuntu-build.yml/badge.svg)](https://github.com/coin-green/coingreen/actions/workflows/ubuntu-build.yml)
+
+## Getting started
+  - [Experimental node (Ubuntu)](doc/getting-started/Getting-started-with-experimental-CoinGreen-network-node.md)
+  - [Experimental GUI (Windows)](doc/getting-started/Getting-started-with-experimental-CoinGreen-GUI.md)
+  - [CoinGreen blockchain explorer](http://pluto.coingreen.tech:8080/)
 
 ## Development and contributions – omg developers
 Development is ongoing, and the development team, as well as other volunteers,
@@ -52,6 +57,11 @@ not straightforward.
 
 - RPC 34557
 - P2P 34558
+
+### Peer magic
+- Main network: _0xc0c0c0c1_
+- Test network: _0xfcc1b7dd_
+- Regression tests network: _0xfabfb5db_
 
 ## Development tips and tricks
 
