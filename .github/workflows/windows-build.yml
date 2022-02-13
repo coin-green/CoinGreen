@@ -83,11 +83,12 @@ jobs:
       run: | 
        make check
        
-    - uses: actions/upload-artifact@v2
-      if: "!startsWith(github.ref, 'refs/tags/')"
-      with:
-         name: windows-binaries
-         path: ${{github.workspace}}/deploy/windows
+
+#    - uses: actions/upload-artifact@v2
+#      if: "!startsWith(github.ref, 'refs/tags/')"
+#      with:
+#         name: windows-binaries
+#         path: ${{github.workspace}}/deploy/windows
 
     - name: Release
       uses: softprops/action-gh-release@v1

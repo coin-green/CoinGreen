@@ -99,11 +99,11 @@ jobs:
         cd ${{github.workspace}}
         make check
 
-    - uses: actions/upload-artifact@v2
-      if: "!startsWith(github.ref, 'refs/tags/')"
-      with:
-         name: ubuntu-binaries
-         path: ${{github.workspace}}/deploy/ubuntu
+#    - uses: actions/upload-artifact@v2
+#      if: "!startsWith(github.ref, 'refs/tags/')"
+#      with:
+#         name: ubuntu-binaries
+#         path: ${{github.workspace}}/deploy/ubuntu
 
     - name: Release
       uses: softprops/action-gh-release@v1
