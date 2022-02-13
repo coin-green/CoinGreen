@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2021 CoinGreen Core developers
+// Copyright (c) 2021-2022 The CoinGreen Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -48,7 +48,7 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
     }
 
     // Only change once per difficulty adjustment interval
-    bool fNewDifficultyProtocol = (pindexLast->nHeight >= 145000);
+    bool fNewDifficultyProtocol = (pindexLast->nHeight >= params.nNewDifficultyProtocol);
     const int64_t difficultyAdjustmentInterval = fNewDifficultyProtocol
                                                  ? 1
                                                  : params.DifficultyAdjustmentInterval();
@@ -88,31 +88,6 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
     return CalculateDogecoinNextWorkRequired(pindexLast, pindexFirst->GetBlockTime(), params);
 }
 
-unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params& params)
-{
-    if (params.fPowNoRetargeting)
-        return pindexLast->nBits;
-
-    // Limit adjustment step
-    int64_t nActualTimespan = pindexLast->GetBlockTime() - nFirstBlockTime;
-    if (nActualTimespan < params.nPowTargetTimespan/4)
-        nActualTimespan = params.nPowTargetTimespan/4;
-    if (nActualTimespan > params.nPowTargetTimespan*4)
-        nActualTimespan = params.nPowTargetTimespan*4;
-
-    // Retarget
-    const arith_uint256 bnPowLimit = UintToArith256(params.powLimit);
-    arith_uint256 bnNew;
-    bnNew.SetCompact(pindexLast->nBits);
-    bnNew *= nActualTimespan;
-    bnNew /= params.nPowTargetTimespan;
-
-    if (bnNew > bnPowLimit)
-        bnNew = bnPowLimit;
-
-    return bnNew.GetCompact();
-}
-
 bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params& params)
 {
     bool fNegative;
@@ -125,7 +100,6 @@ bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params&
     if (fNegative || bnTarget == 0 || fOverflow || bnTarget > UintToArith256(params.powLimit))
         return false;
 
-    // [maxirmx] std::cout << "Checkpoint: " << UintToArith256(hash).GetHex() << " ? " << bnTarget.GetHex() << std::endl;
     // Check proof of work matches claimed amount
     if (UintToArith256(hash) > bnTarget)
         return false;

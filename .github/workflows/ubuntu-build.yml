@@ -78,7 +78,7 @@ jobs:
       run: |
         cd ${{github.workspace}}
         ./autogen.sh
-        ./configure --disable-bench  --disable-gui-tests
+        ./configure --disable-bench
         make -j4
 
     - name: Pre-release

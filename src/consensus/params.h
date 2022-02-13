@@ -1,5 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
+// Copyright (c)      2022 The CoinGreen Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -38,7 +39,6 @@ struct BIP9Deployment {
  */
 struct Params {
     uint256 hashGenesisBlock;
-    int nSubsidyHalvingInterval;
     /** Used to check majorities for block version upgrade */
     int nMajorityEnforceBlockUpgrade;
     int nMajorityRejectBlockOutdated;
@@ -70,7 +70,6 @@ struct Params {
     /** Dogecoin-specific parameters */
     bool fDigishieldDifficultyCalculation;
     bool fPowAllowDigishieldMinDifficultyBlocks; // Allow minimum difficulty blocks where a retarget would normally occur
-    bool fSimplifiedRewards; // Use block height derived rewards rather than previous block hash derived
 
     uint256 nMinimumChainWork;
     uint256 defaultAssumeValid;
@@ -79,6 +78,9 @@ struct Params {
     int32_t nAuxpowChainId;
     bool fStrictChainId;
     bool fAllowLegacyBlocks;
+
+    /** CoinGreen */
+    int64_t nNewDifficultyProtocol;
 
     /** Height-aware consensus parameters */
     uint32_t nHeightEffective; // When these parameters come into use

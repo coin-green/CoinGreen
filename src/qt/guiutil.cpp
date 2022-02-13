@@ -1,4 +1,5 @@
 // Copyright (c) 2011-2016 The Bitcoin Core developers
+// Copyright (c)      2022 The CoinGreen Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -141,7 +142,7 @@ void setupAmountWidget(QLineEdit *widget, QWidget *parent)
     widget->setAlignment(Qt::AlignRight|Qt::AlignVCenter);
 }
 
-bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out)
+bool parseCoinGreenURI(const QUrl &uri, SendCoinsRecipient *out)
 {
     // return if URI is not valid or is no CoinGreen: URI
     if(!uri.isValid() || uri.scheme() != QString("coingreen"))
@@ -202,7 +203,7 @@ bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out)
     return true;
 }
 
-bool parseBitcoinURI(QString uri, SendCoinsRecipient *out)
+bool parseCoinGreenURI(QString uri, SendCoinsRecipient *out)
 {
     // Convert coingreen:// to coingreen:
     //
@@ -210,13 +211,13 @@ bool parseBitcoinURI(QString uri, SendCoinsRecipient *out)
     //    which will lower-case it (and thus invalidate the address).
     if(uri.startsWith("coingreen://", Qt::CaseInsensitive))
     {
-        uri.replace(0, 11, "coingreen:");
+        uri.replace(0, 12, "coingreen:");
     }
     QUrl uriInstance(uri);
-    return parseBitcoinURI(uriInstance, out);
+    return parseCoinGreenURI(uriInstance, out);
 }
 
-QString formatBitcoinURI(const SendCoinsRecipient &info)
+QString formatCoinGreenURI(const SendCoinsRecipient &info)
 {
     QString ret = QString("coingreen:%1").arg(info.address);
     int paramCount = 0;

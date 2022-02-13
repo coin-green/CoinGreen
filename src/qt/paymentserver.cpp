@@ -1,4 +1,5 @@
 // Copyright (c) 2011-2016 The Bitcoin Core developers
+// Copyright (c)      2022 The CoinGreen Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -216,7 +217,7 @@ void PaymentServer::ipcParseCommandLine(int argc, char* argv[])
             savedPaymentRequests.append(arg);
 
             SendCoinsRecipient r;
-            if (GUIUtil::parseBitcoinURI(arg, &r) && !r.address.isEmpty())
+            if (GUIUtil::parseCoinGreenURI(arg, &r) && !r.address.isEmpty())
             {
                 CBitcoinAddress address(r.address.toStdString());
 
@@ -437,7 +438,7 @@ void PaymentServer::handleURIOrFile(const QString& s)
         else // normal URI
         {
             SendCoinsRecipient recipient;
-            if (GUIUtil::parseBitcoinURI(s, &recipient))
+            if (GUIUtil::parseCoinGreenURI(s, &recipient))
             {
                 CBitcoinAddress address(recipient.address.toStdString());
                 if (!address.IsValid()) {
