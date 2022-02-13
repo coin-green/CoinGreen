@@ -258,7 +258,7 @@ public:
         consensus.defaultAssumeValid = uint256S("0x00");
 
         // AuxPoW parameters
-        consensus. = 0x0062; // 98 - Josh Wise!
+        consensus.nAuxpowChainId = 0x0062; // 98 - Josh Wise!
         consensus.fStrictChainId = false;
         consensus.nHeightEffective = 0;
         consensus.fAllowLegacyBlocks = true;
