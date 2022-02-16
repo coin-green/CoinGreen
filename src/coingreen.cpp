@@ -38,7 +38,7 @@ bool AllowDigishieldMinDifficultyForBlock(const CBlockIndex* pindexLast, const C
     return (pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing*2);
 }
 
-unsigned int CalculateDogecoinNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params& params)
+unsigned int CalculateCoinGreenNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params& params)
 {
     int nHeight = pindexLast->nHeight + 1;
     const int64_t retargetTimespan = params.nPowTargetTimespan;
@@ -74,15 +74,19 @@ unsigned int CalculateDogecoinNextWorkRequired(const CBlockIndex* pindexLast, in
     // Retarget
     const arith_uint256 bnPowLimit = UintToArith256(params.powLimit);
     arith_uint256 bnNew;
-    arith_uint256 bnOld;
     bnNew.SetCompact(pindexLast->nBits);
-    bnOld = bnNew;
+
+//    LogPrintf("CalculateCoinGreenNextWorkRequired nActualTimespan=%u nMinTimespan=%u nMaxTimespan=%u\n", nActualTimespan, nMinTimespan, nMaxTimespan );
+//    LogPrintf("CalculateCoinGreenNextWorkRequired pindexLast->nBits=%x nModulatedTimespan=%u retargetTimespan=%u\n", pindexLast->nBits, nModulatedTimespan, retargetTimespan );
+
+
     bnNew *= nModulatedTimespan;
     bnNew /= retargetTimespan;
 
     if (bnNew > bnPowLimit)
         bnNew = bnPowLimit;
 
+//    LogPrintf("CalculateCoinGreenNextWorkRequired bnNew=%x \n", bnNew.GetCompact());
     return bnNew.GetCompact();
 }
 
