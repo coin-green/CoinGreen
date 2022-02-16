@@ -75,7 +75,7 @@ public:
         // CoinGreen
         consensus.nNewDifficultyProtocol = 35835;
 
-        // Blocks 0 - 144999 are conventional difficulty calculation
+        // Blocks 0 - 35839 are conventional difficulty calculation
         consensus.nMajorityEnforceBlockUpgrade = 1500;
         consensus.nMajorityRejectBlockOutdated = 1900;
         consensus.nMajorityWindow = 2000;
@@ -123,12 +123,12 @@ public:
         consensus.fAllowLegacyBlocks = true;
         consensus.nHeightEffective = 0;
 
-        // Blocks 36000 - 371336 are Digishield without AuxPoW
+        // Blocks 35840 - 371336 are Digishield without AuxPoW
         digishieldConsensus = consensus;
-        digishieldConsensus.nHeightEffective = 36000;
+        digishieldConsensus.nHeightEffective = 35840;
         digishieldConsensus.fDigishieldDifficultyCalculation = true;
-        digishieldConsensus.nPowTargetTimespan = 60; // post-digishield: 1 minute
-        digishieldConsensus.nCoinbaseMaturity = 240;
+        digishieldConsensus.nPowTargetTimespan = 10 * 60; // post-digishield: 10 minutes
+        digishieldConsensus.nCoinbaseMaturity = 30;
 
         // Blocks 371337+ are AuxPoW
         auxpowConsensus = digishieldConsensus;
@@ -163,7 +163,6 @@ public:
         assert(consensus.hashGenesisBlock == uint256S("0x89a4b9b3f05df207c0a731d785e37feea6bfad4e7f6ef8b22910d86b3de229b7"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
-//        vSeeds.push_back(CDNSSeedData("coingreen.tech", "dnsseed.coingreen.tech", true));
         vSeeds.push_back(CDNSSeedData("coingreen.tech", "dnsseed.coingreen.tech"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,30);
@@ -214,7 +213,7 @@ public:
         // CoinGreen
         consensus.nNewDifficultyProtocol = 1;
 
-        // Blocks 0 - 144999 are pre-Digishield
+        // Blocks 0 - 35839 are pre-Digishield
         consensus.nHeightEffective = 0;
         consensus.nPowTargetTimespan = 4 * 60 * 60; // pre-digishield: 4 hours
         consensus.fDigishieldDifficultyCalculation = false;
@@ -263,13 +262,13 @@ public:
         consensus.nHeightEffective = 0;
         consensus.fAllowLegacyBlocks = true;
 
-        // Blocks 36000 - 157499 are Digishield without minimum difficulty on all blocks
+        // Blocks 35840 - 157499 are Digishield without minimum difficulty on all blocks
         digishieldConsensus = consensus;
-        digishieldConsensus.nHeightEffective = 36000;
-        digishieldConsensus.nPowTargetTimespan = 60; // post-digishield: 1 minute
+        digishieldConsensus.nHeightEffective = 35840;
+        digishieldConsensus.nPowTargetTimespan = 10 * 60; // post-digishield: 1 minute
         digishieldConsensus.fDigishieldDifficultyCalculation = true;
         digishieldConsensus.fPowAllowMinDifficultyBlocks = false;
-        digishieldConsensus.nCoinbaseMaturity = 240;
+        digishieldConsensus.nCoinbaseMaturity = 30;
 
         // Blocks 157500 - 158099 are Digishield with minimum difficulty on all blocks
         minDifficultyConsensus = digishieldConsensus;
@@ -391,7 +390,7 @@ public:
         consensus.fAllowLegacyBlocks = true;
 
         // Dogecoin parameters
-       consensus.nCoinbaseMaturity = 60; // For easier testability in RPC tests
+        consensus.nCoinbaseMaturity = 60; // For easier testability in RPC tests
 
         digishieldConsensus = consensus;
         digishieldConsensus.nHeightEffective = 10;
