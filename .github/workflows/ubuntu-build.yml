@@ -25,7 +25,7 @@ on:
   workflow_dispatch:
 
 env:
-  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+  MAKEFLAGS: -j4
   BUILD_TYPE: Release
   BDB_PREFIX: /usr/local
 
