@@ -38,6 +38,8 @@ bool AllowDigishieldMinDifficultyForBlock(const CBlockIndex* pindexLast, const C
     return (pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing*2);
 }
 
+// Digishield
+// https://dgbwiki.com/index.php?title=DigiShield
 unsigned int CalculateCoinGreenNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params& params)
 {
     int nHeight = pindexLast->nHeight + 1;

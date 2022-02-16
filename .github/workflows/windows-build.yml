@@ -25,6 +25,7 @@ on:
   workflow_dispatch:
 
 env:
+  MAKEFLAGS: -j4
   BUILD_TYPE: Release
 
 jobs:
