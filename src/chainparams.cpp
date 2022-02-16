@@ -75,7 +75,7 @@ public:
         // CoinGreen
         consensus.nNewDifficultyProtocol = 35835;
 
-        // Blocks 0 - 35839 are conventional difficulty calculation
+        // Blocks 0 - 35840 are conventional difficulty calculation
         consensus.nMajorityEnforceBlockUpgrade = 1500;
         consensus.nMajorityRejectBlockOutdated = 1900;
         consensus.nMajorityWindow = 2000;
@@ -123,9 +123,9 @@ public:
         consensus.fAllowLegacyBlocks = true;
         consensus.nHeightEffective = 0;
 
-        // Blocks 35840 - 371336 are Digishield without AuxPoW
+        // Blocks 35841 - 371336 are Digishield without AuxPoW
         digishieldConsensus = consensus;
-        digishieldConsensus.nHeightEffective = 35840;
+        digishieldConsensus.nHeightEffective = 35841;
         digishieldConsensus.fDigishieldDifficultyCalculation = true;
         digishieldConsensus.nPowTargetTimespan = 10 * 60; // post-digishield: 10 minutes
         digishieldConsensus.nCoinbaseMaturity = 30;
@@ -213,7 +213,7 @@ public:
         // CoinGreen
         consensus.nNewDifficultyProtocol = 1;
 
-        // Blocks 0 - 35839 are pre-Digishield
+        // Blocks 0 - 35840 are pre-Digishield
         consensus.nHeightEffective = 0;
         consensus.nPowTargetTimespan = 4 * 60 * 60; // pre-digishield: 4 hours
         consensus.fDigishieldDifficultyCalculation = false;
@@ -262,9 +262,9 @@ public:
         consensus.nHeightEffective = 0;
         consensus.fAllowLegacyBlocks = true;
 
-        // Blocks 35840 - 157499 are Digishield without minimum difficulty on all blocks
+        // Blocks 35841 - 157499 are Digishield without minimum difficulty on all blocks
         digishieldConsensus = consensus;
-        digishieldConsensus.nHeightEffective = 35840;
+        digishieldConsensus.nHeightEffective = 35841;
         digishieldConsensus.nPowTargetTimespan = 10 * 60; // post-digishield: 1 minute
         digishieldConsensus.fDigishieldDifficultyCalculation = true;
         digishieldConsensus.fPowAllowMinDifficultyBlocks = false;
