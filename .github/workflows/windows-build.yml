@@ -8,7 +8,7 @@ on:
     tags:        
       - '*'  
     branches:
-      - 'v*'
+      - '2*'
     paths-ignore:
       - 'docs/**'
       - '**.adoc'
