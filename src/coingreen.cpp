@@ -1,5 +1,5 @@
 // Copyright (c) 2015 The Dogecoin Core developers
-// Copyright (c) 2021 CoinGreen Core developers
+// Copyright (c) 2021-2022 The CoinGreen Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -39,7 +39,7 @@ bool AllowDigishieldMinDifficultyForBlock(const CBlockIndex* pindexLast, const C
 }
 
 // Digishield
-// https://www.reddit.com/r/Digibyte/comments/213t7b/what_is_digishield_how_it_works_to_retarget/ 
+// https://www.reddit.com/r/Digibyte/comments/213t7b/what_is_digishield_how_it_works_to_retarget/
 unsigned int CalculateCoinGreenNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params& params)
 {
     int nHeight = pindexLast->nHeight + 1;
@@ -129,12 +129,20 @@ bool CheckAuxPowProofOfWork(const CBlockHeader& block, const Consensus::Params& 
     return true;
 }
 
-CAmount GetCoinGreenBlockSubsidy(int nHeight, const Consensus::Params&, uint256)
+CAmount GetCoinGreenBlockSubsidy(uint32_t nHeight, const Consensus::Params& params, uint256)
 {
-    int rewards_pre  = REWARD_PER_BLOCK*(nHeight-1) + GENESIS_BLOCK_REWARD;
-    int rewards_rem  = INITIAL_SUPPLY - rewards_pre;
-    int reward       = std::max(0, std::min(rewards_rem, REWARD_PER_BLOCK));
+    CAmount reward = 0;
 
+    if (nHeight == params.nFounderMintHeight) {
+        reward = FOUNDER_MINT;
+    }
+    else {
+        CAmount rewards_pre  = nHeight < params.nFounderMintHeight ? REWARD_PER_BLOCK*(nHeight-1) + GENESIS_BLOCK_REWARD :
+                                                                     REWARD_PER_BLOCK*(nHeight-2) + GENESIS_BLOCK_REWARD + FOUNDER_MINT;
+        CAmount rewards_rem  = INITIAL_SUPPLY - rewards_pre;
+        reward = rewards_rem < REWARD_PER_BLOCK ? rewards_rem : REWARD_PER_BLOCK;
+        reward = reward > 0 ? reward : 0;
+    }
     return reward * COIN;
 }
 

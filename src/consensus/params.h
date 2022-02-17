@@ -80,7 +80,8 @@ struct Params {
     bool fAllowLegacyBlocks;
 
     /** CoinGreen */
-    int64_t nNewDifficultyProtocol;
+    uint32_t nNewDifficultyProtocol;
+    uint32_t nFounderMintHeight;
 
     /** Height-aware consensus parameters */
     uint32_t nHeightEffective; // When these parameters come into use
