@@ -1,5 +1,5 @@
-// Copyright (c) 2015 The Dogecoin Core developers
-// Copyright (c) 2021 CoinGreen Core developers
+// Copyright (c)      2015 The Dogecoin Core developers
+// Copyright (c) 2021-2022 The CoinGreen Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -12,13 +12,14 @@
 // Initial supply - 43,000,000
 // Mining reward per block 23
 
-const int INITIAL_SUPPLY          = 43000000;
-const int REWARD_PER_BLOCK        = 23;
-const int GENESIS_BLOCK_REWARD    = 88;
+const CAmount INITIAL_SUPPLY          = 43000000;
+const CAmount FOUNDER_MINT            = 10000000;
+const CAmount REWARD_PER_BLOCK        = 23;
+const CAmount GENESIS_BLOCK_REWARD    = 88;
 
 
 bool AllowDigishieldMinDifficultyForBlock(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params);
-CAmount GetCoinGreenBlockSubsidy(int nHeight, const Consensus::Params& consensusParams, uint256 prevHash);
+CAmount GetCoinGreenBlockSubsidy(uint32_t nHeight, const Consensus::Params& consensusParams, uint256 prevHash);
 unsigned int CalculateCoinGreenNextWorkRequired(const CBlockIndex* pindexLast, int64_t nLastRetargetTime, const Consensus::Params& params);
 
 /**
