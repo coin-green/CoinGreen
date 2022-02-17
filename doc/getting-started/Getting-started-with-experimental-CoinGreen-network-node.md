@@ -12,7 +12,7 @@
 > [usermod man page](https://linux.die.net/man/8/usermod)
 
 **All further steps shall be executed by coingreen user.**
-* Download CoinGreen  ubuntu-binaries.zip at https://github.com/coin-green/coingreen/releases/tag/v2.0.0.14
+* Download CoinGreen  ubuntu-binaries.zip at https://github.com/coin-green/coingreen/releases/tag/v2.0.0.15
 * Extract files to _/home/coingreen_, check/set execution permissions (_chmod +x_) to _coingreend_, _coingreen-cli_, _coingree-tx_, _start.sh_, _util/rpcuser.py_
 * Execute _util/rpcuser.py coingreen_ 
 

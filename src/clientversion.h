@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_CLIENTVERSION_H
-#define BITCOIN_CLIENTVERSION_H
+#ifndef COINGREEN_CLIENTVERSION_H
+#define COINGREEN_CLIENTVERSION_H
 
 #if defined(HAVE_CONFIG_H)
 #include "config/coingreen-config.h"
@@ -18,7 +18,7 @@
 #define CLIENT_VERSION_MAJOR 2
 #define CLIENT_VERSION_MINOR 0
 #define CLIENT_VERSION_REVISION 0
-#define CLIENT_VERSION_BUILD 14
+#define CLIENT_VERSION_BUILD 15
 
 //! Set to true for release, false for prerelease or test build
 #define CLIENT_VERSION_IS_RELEASE true
@@ -68,4 +68,4 @@ std::string FormatSubVersion(const std::string& name, int nClientVersion, const 
 
 #endif // WINDRES_PREPROC
 
-#endif // BITCOIN_CLIENTVERSION_H
+#endif // COINGREEN_CLIENTVERSION_H
